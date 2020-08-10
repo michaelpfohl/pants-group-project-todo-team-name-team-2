@@ -27,3 +27,38 @@ body {
     color: violet;
 }
 
+
+
+.tab-content h1 {
+    justify-content: center;
+    border-bottom: 1px solid gray;
+    display: inline-block;
+    letter-spacing: 2px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.tab-content {
+    justify-content: space-around;
+    padding: 50px;
+    margin-left: 0;
+    /* margin-left: 0; */
+}
+
+.tab-content p {
+    margin-left: auto;
+}
+
+.col-4 {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+    position: relative;
+    padding: 50px;
+    margin: 10px;
+    width: 200px;
+    box-sizing: border-box;
+}
+
+.list-group {
+    margin-left: 60px;
+}
