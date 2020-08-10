@@ -104,8 +104,27 @@ const sizeList = (p) => {
     return domString;
 }
 
+const buildOrderSummary = () => {
+    let domString = '';
+
+    domString += `<div class="" id="cardOrderSummary"
+                    <div class="card mb-5" style="width: 300px;">
+                        <h5 class="card-header text-center" style="background-color: #C7B8B4;">Order Summary</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <a href="#" class="btn btn-primary" style="background-color: #C7B8B4;">Go somewhere</a> 
+                        </div>
+                    </div>
+                </div>`
+                
+    printToDom('containerOrderSummary', domString);
+
+}
+
 const init = () => {
     buildCards();
+    buildOrderSummary();
 };
 
 init();
