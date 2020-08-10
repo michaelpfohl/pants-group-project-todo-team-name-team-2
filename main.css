@@ -2,5 +2,21 @@ body {
     background: lavender;
    
 }
- 
+
+.footer--container {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: gray;
+    color: white;
+    height: 30px;
+    text-align: center;
+}
+
+.footer--content {
+    font-size: 12px;
+    padding:  5px 0px 0px 0px;
+    margin: auto;
+}
 
