@@ -20,3 +20,10 @@ body {
     margin: auto;
 }
 
+.footer--content a {
+    color: white;
+}
+.footer--content a:hover {
+    color: violet;
+}
+
