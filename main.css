@@ -27,3 +27,25 @@ body {
     color: violet;
 }
 
+.col-4 {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.tab-content h1 {
+    text-align: end;
+    border-bottom: 1px solid gray;
+    display: inline-block;
+    letter-spacing: 2px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.col-4 {
+    padding: 50px;
+    margin: 10px;
+    width: 200px;
+    box-sizing: border-box;
+}
