@@ -66,6 +66,8 @@ const products = [
     }
 ];
 
+const cart = [];
+
 const printToDom = (divId, textToPrint) => {
     const selectedDiv = document.getElementById(divId);
     selectedDiv.innerHTML = textToPrint;
@@ -87,8 +89,8 @@ const buildCards = () => {
                             </div>
                             <p class="card-text">${products[i].description}</p>
                             <div class="container d-flex">
-                                <a href="#" class="btn btn-primary m-1">Add to Cart</a>
-                                <a href="#" class="btn btn-primary m-1">Add to Wishlist</a>
+                                <a id="add-to-cart-${[i]}"class="btn btn-primary m-1">Add to Cart</a>
+                                <a id="add-to-wishlist-${[i]}"class="btn btn-primary m-1">Add to Wishlist</a>
                             </div>
                         </div>
                     </div>`;
@@ -104,8 +106,25 @@ const sizeList = (p) => {
     return domString;
 }
 
+const addToCart = (e) => {
+    const target = e.target.id;
+    for (let i = 0; i < products.length; i++){
+        if (target === `add-to-cart-${[i]}`){
+            cart.push(products[i]);
+        }
+    }
+    console.log(cart);
+}
+
+const buttonEvents = () => {
+    for (let i = 0; i < products.length; i ++){
+        document.querySelector(`#add-to-cart-${[i]}`).addEventListener('click', addToCart)
+    }
+}
+
 const init = () => {
     buildCards();
+    buttonEvents();
 };
 
 init();
