@@ -68,6 +68,8 @@ const products = [
 
 const cart = [];
 
+const wishlist = [];
+
 const printToDom = (divId, textToPrint) => {
     const selectedDiv = document.getElementById(divId);
     selectedDiv.innerHTML = textToPrint;
@@ -113,12 +115,21 @@ const addToCart = (e) => {
             cart.push(products[i]);
         }
     }
-    console.log(cart);
+}
+
+const addToWishlist = (e) => {
+    const target = e.target.id;
+    for (let i = 0; i < products.length; i++){
+        if (target === `add-to-wishlist-${[i]}`){
+            wishlist.push(products[i]);
+        }
+    }
 }
 
 const buttonEvents = () => {
     for (let i = 0; i < products.length; i ++){
-        document.querySelector(`#add-to-cart-${[i]}`).addEventListener('click', addToCart)
+        document.querySelector(`#add-to-cart-${[i]}`).addEventListener('click', addToCart);
+        document.querySelector(`#add-to-wishlist-${[i]}`).addEventListener('click', addToWishlist)
     }
 }
 
