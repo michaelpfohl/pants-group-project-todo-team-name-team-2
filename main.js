@@ -145,7 +145,9 @@ const filterProducts = (e) => {
             selectedProducts.push(products[i]);
         }
     }
-    if (target === "all"){
+    if (target === e.currentTarget.id){
+        return 
+    } else if (target === "all"){
         buildCards(products);
     } else {
         buildCards(selectedProducts);
