@@ -125,6 +125,7 @@ const addToWishlist = (e) => {
             wishlist.push(products[i]);
         }
     }
+    printToDom('wishlist-nav', `Wishlist: ${wishlist.length}`);
 }
 
 const buttonEvents = () => {
