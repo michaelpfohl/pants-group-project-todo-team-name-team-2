@@ -104,8 +104,40 @@ const sizeList = (p) => {
     return domString;
 }
 
+const buildWishlist = () => {
+    let domString = '<h5 class="card-header text-center">Wishlist</h5>';
+    
+    for (let j = 0; j < products.length; j++) {
+        domString += `
+        <div class="row no-gutters" id="cardWishlist">
+                    <div class="card mb-3 d-flex p-2 mx-2" style="max-width: 350px;">
+                    <div class="row no-gutters">
+                        <div class="col" id="containerImage" style="height: 100%;">
+                            <img src="${products[j].image}" class="card-img">
+                        </div>
+                        <div class="col-4">
+                            <div class="">
+                                <h5 class="">${products[j].name}</h5>
+                                <p class="">Price: ${products[j].price}</p>
+                            </div>
+                        </div> 
+                            <div class="col text-right" id="wishlistBtns">
+                                <button type="button" class="btn btn-danger btn-sm" id="btnRemoveFromWishlist">Remove</button>
+                                <button type="button" class="btn btn-primary btn-sm" id="btnAddToCart">Add to Cart</button>
+                            </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>`
+        }
+
+  printToDom('containerWishlist', domString);
+
+}
+
 const init = () => {
     buildCards();
+    buildWishlist();
 };
 
 init();
