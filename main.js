@@ -6,63 +6,72 @@ const products = [
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
-        sizes: [4,5,6,7,8,9]
+        sizes: [4,5,6,7,8,9],
+        type: 'traditional'
     },
     {
         name: 'Jodhpur 2',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
-        sizes: [4,5,6,7,8,9]
+        sizes: [4,5,6,7,8,9],
+        type: 'modern'
     },
     {
         name: 'Jodhpur 3',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
-        sizes: [4,5,6,7,8,9]
+        sizes: [4,5,6,7,8,9],
+        type: 'experimental'
     },
     {
         name: 'Jodhpur 4',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
-        sizes: [4,5,6,7,8,9]
+        sizes: [4,5,6,7,8,9],
+        type: 'traditional'
     },
     {
         name: 'Jodhpur 5',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
-        sizes: [4,5,6,7,8,9]
+        sizes: [4,5,6,7,8,9],
+        type: 'experimental'
     },
     {
         name: 'Jodhpur 6',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
-        sizes: [4,5,6,7,8,9]
+        sizes: [4,5,6,7,8,9],
+        type: 'experimental'
     },
     {
         name: 'Jodhpur 7',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
-        sizes: [4,5,6,7,8,9]
+        sizes: [4,5,6,7,8,9],
+        type: 'modern'
     },
     {
         name: 'Jodhpur 8',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
-        sizes: [4,5,6,7,8,9]
+        sizes: [4,5,6,7,8,9],
+        type: 'modern'
     },
     {
         name: 'Jodhpur 9',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
-        sizes: [4,5,6,7,8,9]
+        sizes: [4,5,6,7,8,9],
+        type: 'traditional'
     }
 ];
 
@@ -75,19 +84,19 @@ const printToDom = (divId, textToPrint) => {
     selectedDiv.innerHTML = textToPrint;
 };
 
-const buildCards = () => {
+const buildCards = (arr) => {
     let domString = '';
-    for (let i = 0; i < products.length; i++){
+    for (let i = 0; i < arr.length; i++){
         domString += `<div class="card text-center" style="width: 30%; margin: 1%;">
-                        <h5 class="card-title mt-2">${products[i].name}</h5>
-                        <img class="card-img-top" src="${products[i].image}" alt="Card image cap">
+                        <h5 class="card-title mt-2">${arr[i].name}</h5>
+                        <img class="card-img-top" src="${arr[i].image}" alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title">${products[i].price}</h5>
+                            <h5 class="card-title">${arr[i].price}</h5>
                             <h5> Sizes: </h5>
                             <select class="form-control m-2" id="size-list-${i}">
-                                ${sizeList(products[i])}
+                                ${sizeList(arr[i])}
                             </select>
-                            <p class="card-text">${products[i].description}</p>
+                            <p class="card-text">${arr[i].description}</p>
                             <div class="container d-flex">
                                 <a id="add-to-cart-${i}"class="btn btn-primary m-1">Add to Cart</a>
                                 <a id="add-to-wishlist-${i}"class="btn btn-primary m-1">Add to Wishlist</a>
@@ -128,15 +137,31 @@ const addToWishlist = (e) => {
     printToDom('wishlist-nav', `Wishlist: ${wishlist.length}`);
 }
 
+const filterProducts = (e) => {
+    const target = e.target.id;
+    const selectedProducts = [];
+    for (let i = 0; i < products.length; i++){
+        if(products[i].type === target){
+            selectedProducts.push(products[i]);
+        }
+    }
+    if (target === "all"){
+        buildCards(products);
+    } else {
+        buildCards(selectedProducts);
+    }
+}
+
 const buttonEvents = () => {
     for (let i = 0; i < products.length; i ++){
         document.querySelector(`#add-to-cart-${[i]}`).addEventListener('click', addToCart);
         document.querySelector(`#add-to-wishlist-${[i]}`).addEventListener('click', addToWishlist)
     }
+    document.querySelector("#button-container").addEventListener('click', filterProducts)
 }
 
 const init = () => {
-    buildCards();
+    buildCards(products);
     buttonEvents();
 };
 
