@@ -83,8 +83,8 @@ const buildCards = () => {
                         <img class="card-img-top" src="${products[i].image}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">${products[i].price}</h5>
+                            <h5> Sizes: </h5>
                             <select class="form-control m-2" id="size-list-${i}">
-                                <option selected disabled>Sizes</option>
                                 ${sizeList(products[i])}
                             </select>
                             <p class="card-text">${products[i].description}</p>
