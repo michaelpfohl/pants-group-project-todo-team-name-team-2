@@ -107,25 +107,26 @@ const sizeList = (p) => {
 const buildOrderSummary = () => {
     let domString = '';
 
-    domString += `<div class="" id="cardOrderSummary"
+    domString += `<div class="" id="cardOrderSummary">
                     <div class="card mb-5" style="width: 300px;">
                         <h5 class="card-header text-center" style="background-color: #C7B8B4;">Order Summary</h5>
                         <div class="card-body">
                             <div class="row justify-content-between" id="gridContainer">
-                            <div class="col-sm" id="checkoutTitles">
-                                <li>Subtotal</li>
-                                <li>Savings</li>
-                                <li><strong>Estimated Total</strong></li>
+                                <div class="col-8" id="checkoutTitles">
+                                    <li>Subtotal</li>
+                                    <li>Savings</li>
+                                    <li><strong>Estimated Total</strong></li>
+                                </div>
+                                <div class="col-4" id="checkoutTotals">
+                                    <li>$55.00</li>
+                                    <li>-$5.00</li>
+                                    <li><strong>$50.00</strong></li>
+                                </div>
                             </div>
-                            <div class="col-sm" id="checkoutTotals">
-                                <li>$55.00</li>
-                                <li>-$5.00</li>
-                                <li><strong>$50.00</strong></li>
-                            </div>
-                            </div>
-
                             <p class="card-text">Taxes calculated at checkout</p>
-                            <a href="#" class="btn btn-primary" style="background-color: #C7B8B4;">Go somewhere</a> 
+                            <div class="text-center">
+                                <button class="btn btn-primary">Checkout</button>
+                            </div>
                         </div>
                     </div>
                 </div>`
