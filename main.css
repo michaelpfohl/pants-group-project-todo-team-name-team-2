@@ -3,6 +3,23 @@ body {
    
 }
 
+#headerWishlist {
+    max-width: 300px;
+}
+
+#gridContainer {
+    list-style: none;
+   }
+
+#btnRemoveFromWishlist {
+    font-size: 12px;
+    margin-bottom: 35px;
+}
+
+#btnAddToCart {
+    font-size: 12px;
+}
+
 .footer--container {
     position: fixed;
     left: 0;

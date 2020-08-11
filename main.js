@@ -104,8 +104,105 @@ const sizeList = (p) => {
     return domString;
 }
 
+const buildCartProducts = () => {
+    let domString = '';
+    
+    for (let j = 0; j < products.length; j++) {
+    domString += `<div class="card mb-3 d-flex" style="max-width: 540px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4" id="containerImage" style="height: 100%;">
+                        <img src="${products[j].image}" class="card-img">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">${products[j].name}</h5>
+                            <p class="card-text"><small class="text-muted">#1234567890</small></p>
+                            <p class="card-text">Size: </p>
+                            <p class="">Price: ${products[j].price}</p>
+                        </div>
+                    </div> 
+                    <div class="row no-gutters"
+                        <div class="col-sm-8">
+                            <p class="">QTY:</p>
+                            <input type="text" class="" id="inputQuanity" style="width: 20%;">
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-danger">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`
+    }
+    printToDom('containerCartProducts', domString);
+}
+
+const buildOrderSummary = () => {
+    let domString = '';
+
+    domString += `<div class="" id="cardOrderSummary">
+                    <div class="card mb-5" style="width: 300px;">
+                        <h5 class="card-header text-center" style="background-color: #C7B8B4;">Order Summary</h5>
+                        <div class="card-body">
+                            <div class="row justify-content-between" id="gridContainer">
+                                <div class="col-8" id="checkoutTitles">
+                                    <li>Subtotal</li>
+                                    <li>Savings</li>
+                                    <li><strong>Estimated Total</strong></li>
+                                </div>
+                                <div class="col-4" id="checkoutTotals">
+                                    <li>$55.00</li>
+                                    <li>-$5.00</li>
+                                    <li><strong>$50.00</strong></li>
+                                </div>
+                            </div>
+                            <p class="card-text">Taxes calculated at checkout</p>
+                            <div class="text-center">
+                                <button class="btn btn-primary">Checkout</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+                
+    printToDom('containerOrderSummary', domString);
+}
+
+const buildWishlist = () => {
+    let domString = '<h5 class="card-header text-center">Wishlist</h5>';
+    
+    for (let j = 0; j < products.length; j++) {
+        domString += `
+        <div class="row no-gutters" id="cardWishlist">
+                    <div class="card mb-3 d-flex p-2 mx-2" style="max-width: 350px;">
+                    <div class="row no-gutters">
+                        <div class="col" id="containerImage" style="height: 100%;">
+                            <img src="${products[j].image}" class="card-img">
+                        </div>
+                        <div class="col-4">
+                            <div class="">
+                                <h5 class="">${products[j].name}</h5>
+                                <p class="">Price: ${products[j].price}</p>
+                            </div>
+                        </div> 
+                            <div class="col text-right" id="wishlistBtns">
+                                <button type="button" class="btn btn-danger btn-sm" id="btnRemoveFromWishlist">Remove</button>
+                                <button type="button" class="btn btn-primary btn-sm" id="btnAddToCart">Add to Cart</button>
+                            </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>`
+        }
+
+  printToDom('containerWishlist', domString);
+
+}
+
+
 const init = () => {
     buildCards();
+    buildCartProducts();
+    buildOrderSummary();
+    buildWishlist();
 };
 
 init();
