@@ -115,6 +115,7 @@ const addToCart = (e) => {
             cart.push(products[i]);
         }
     }
+    printToDom('cart-nav', `Cart: ${cart.length}`);
 }
 
 const addToWishlist = (e) => {
