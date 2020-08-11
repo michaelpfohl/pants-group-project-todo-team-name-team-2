@@ -62,3 +62,21 @@ body {
 .list-group {
     margin-left: 60px;
 }
+
+.main-img-container {
+    position: relative;
+    text-align: center;
+}
+
+.main-img {
+    width: 100%;
+}
+
+.main-img-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-color: white;
+    border: 3px solid black;
+}
