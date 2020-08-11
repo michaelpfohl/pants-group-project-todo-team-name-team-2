@@ -83,16 +83,14 @@ const buildCards = () => {
                         <img class="card-img-top" src="${products[i].image}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">${products[i].price}</h5>
-                            <div class="dropdown m-2">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sizes</button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        ${sizeList(products[i])}
-                                    </div>
-                            </div>
+                            <h5> Sizes: </h5>
+                            <select class="form-control m-2" id="size-list-${i}">
+                                ${sizeList(products[i])}
+                            </select>
                             <p class="card-text">${products[i].description}</p>
                             <div class="container d-flex">
-                                <a id="add-to-cart-${[i]}"class="btn btn-primary m-1">Add to Cart</a>
-                                <a id="add-to-wishlist-${[i]}"class="btn btn-primary m-1">Add to Wishlist</a>
+                                <a id="add-to-cart-${i}"class="btn btn-primary m-1">Add to Cart</a>
+                                <a id="add-to-wishlist-${i}"class="btn btn-primary m-1">Add to Wishlist</a>
                             </div>
                         </div>
                     </div>`;
@@ -103,7 +101,7 @@ const buildCards = () => {
 const sizeList = (p) => {
     let domString = '';
     for (let i = 0; i < p.sizes.length; i++){
-        domString += `<a class="dropdown-item">${p.sizes[i]}</a>`
+        domString += `<option class="dropdown-item" value="${p.sizes[i]}">${p.sizes[i]}</option>`
     }
     return domString;
 }
@@ -112,6 +110,8 @@ const addToCart = (e) => {
     const target = e.target.id;
     for (let i = 0; i < products.length; i++){
         if (target === `add-to-cart-${[i]}`){
+            let x = document.querySelector(`#size-list-${i}`);
+            products[i].selectedSize = x.options[x.selectedIndex].value;
             cart.push(products[i]);
         }
     }
