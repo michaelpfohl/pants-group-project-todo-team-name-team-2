@@ -1,86 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jodhpur Pants</title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="main.css" />
-  </head>
-  <body>
-    <div class="jumbotron jumbotron-fluid m-0">
-      <div class="container">
-        <h1 class="display-4">Fluid jumbotron</h1>
-        <p class="lead">
-          This is a modified jumbotron that occupies the entire horizontal space
-          of its parent.
-        </p>
-      </div>
-    </div>
-    <!-- Navbar Start -->
-    <nav class="m-0 navbar navbar-expand-lg navbar-light bg-light sticky-top">
-      <a class="navbar-brand" href="#"></a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div
-        class="collapse navbar-collapse m-0 d-block p-2 justify-content-around"
-        id="navbarNavDropdown"
-      >
-        <ul class="navbar-nav d-flex justify-content-around w-100">
-          <li class="nav-item active">
-            <a class="nav-link" href="index.html"
-              >Home <span class="sr-only">(current)</span></a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="products.html">Products</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="btnCartPage">Cart</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <!-- Navbar End -->
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Jodhpur Pants</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+			integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="main.css" />
+	</head>
+	<body>
+		<!-- Navbar Start -->
+		<div class="jumbotron jumbotron-fluid m-0">
+			<div class="container">
+				<h1 class="display-4">Fluid jumbotron</h1>
+				<p class="lead">
+					This is a modified jumbotron that occupies the entire horizontal space
+					of its parent.
+				</p>
+			</div>
+		</div>
+		<nav class="m-0 navbar navbar-expand-lg navbar-light bg-light sticky-top">
+			<a class="navbar-brand" href="#"></a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNavDropdown"
+				aria-controls="navbarNavDropdown"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div
+				class="collapse navbar-collapse m-0 d-block p-2 justify-content-around"
+				id="navbarNavDropdown"
+			>
+				<ul class="navbar-nav d-flex justify-content-around w-100">
+					<li class="nav-item active">
+						<a class="nav-link" href="index.html"
+							>Home <span class="sr-only">(current)</span></a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="about.html">About</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="products.html">Products</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="cart-nav">Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Wishlist</a>
+                    </li>
+				</ul>
+			</div>
+		</nav>
+		<!-- Navbar End -->
+		<!-- Main Image Start -->
+		<div class="main-img-container">
+			<img
+				class="main-img"
+				src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Horse_riding_in_coca_cola_arena_-_melbourne_show_2005.jpg/1200px-Horse_riding_in_coca_cola_arena_-_melbourne_show_2005.jpg"
+				alt="A horse show competitor wearing contemporary stretch-fabric jodhpurs"
+			/>
+			<div class="card main-img-text">
+				<h1 class="card-body">
+					High Quality and Comfort
+				</h1>
+			</div>
+		</div>
+		<!-- Main Image End -->
+		<!-- Feature Cards Start -->
+		<div class="d-flex flex-row justify-content-around mt-5 mb-5">
+			<div class="card" style="width: 18rem;">
+				<img
+					src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Cecil_B_DeMille_1937.JPG/220px-Cecil_B_DeMille_1937.JPG"
+					class="card-img-top"
+					alt="Cecil B DeMille, 1937, wearing the flared-hip riding breeches that are often termed jodphurs."
+				/>
+				<div class="card-body">
+					<h5 class="card-title">Rich History of Tradition</h5>
+					<a href="./about.html" class="btn btn-primary">About</a>
+				</div>
+			</div>
+			<div class="card" style="width: 18rem;">
+				<img
+					src="https://i.pinimg.com/originals/2d/55/c9/2d55c911b4bfd07874af13a6bf003126.jpg"
+					class="card-img-top"
+					alt="Jodhpur Pants"
+				/>
+				<div class="card-body">
+					<h5 class="card-title">Need To Find Something?</h5>
+					<input type="text" placeholder="Search..." />
+				</div>
+			</div>
+			<div class="card" style="width: 18rem;">
+				<img
+					src="https://skypic.attic.city/?bucket=cdn.attic.city&key=items/1f12242be04d0195723a4af8f5a5dfd76d7a2e0e3f367a5ec903181e2983c813-w670h705q75fit.jpeg"
+					class="card-img-top"
+					alt="Jodhpur Pants"
+				/>
+				<div class="card-body">
+					<h5 class="card-title">Premium Quality</h5>
+					<a href="./products.html" class="btn btn-primary">Products</a>
+				</div>
+			</div>
+		</div>
+		<!-- Feature Cards End -->
+		<!-- Footer Start -->
+		<div class="text-right footer--container">
+			<p class="mr-2 footer--content">
+				Made by <a href="https://github.com/liz-barnes">Liz Barnes,</a>
+				<a href="https://github.com/Jonathon22">Jonathon Joyner,</a>
+				<a href="https://github.com/HunterJuneau">Hunter Juneau,</a> and
+				<a href="https://github.com/michaelpfohl">Michael Pfohl</a> · ©2020
+			</p>
+		</div>
+		<!-- Footer End -->
 
-    <!-- Footer Start -->
-    <div class="text-right footer--container">
-        <p class="mr-2 footer--content">Made by <a href="https://github.com/liz-barnes">Liz Barnes,</a> <a href="https://github.com/Jonathon22">Jonathon Joyner,</a> <a href="https://github.com/HunterJuneau">Hunter Juneau,</a> and <a href="https://github.com/michaelpfohl">Michael Pfohl</a> · ©2020</p>
-    </div>
-    <!-- Footer End -->
-
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-      crossorigin="anonymous"
-    ></script>
-    <script src="main.js"></script>
-  </body>
+		<script
+			src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+			integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+			integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+			crossorigin="anonymous"
+		></script>
+		<script src="main.js"></script>
+	</body>
 </html>

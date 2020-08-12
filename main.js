@@ -66,9 +66,18 @@ const products = [
     }
 ];
 
+const cart = [];
+
+const wishlist = [];
+
 const printToDom = (divId, textToPrint) => {
     const selectedDiv = document.getElementById(divId);
     selectedDiv.innerHTML = textToPrint;
+};
+
+const childPrintToDom = (divId, textToPrint) => {
+    const selectedDiv = document.getElementById(divId);
+    selectedDiv.appendChild(textToPrint);
 };
 
 const buildCards = () => {
@@ -79,16 +88,14 @@ const buildCards = () => {
                         <img class="card-img-top" src="${products[i].image}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">${products[i].price}</h5>
-                            <div class="dropdown m-2">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sizes</button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        ${sizeList(products[i])}
-                                    </div>
-                            </div>
+                            <h5> Sizes: </h5>
+                            <select class="form-control m-2" id="size-list-${i}">
+                                ${sizeList(products[i])}
+                            </select>
                             <p class="card-text">${products[i].description}</p>
                             <div class="container d-flex">
-                                <a href="#" class="btn btn-primary m-1">Add to Cart</a>
-                                <a href="#" class="btn btn-primary m-1">Add to Wishlist</a>
+                                <a id="add-to-cart-${i}"class="btn btn-primary m-1">Add to Cart</a>
+                                <a id="add-to-wishlist-${i}"class="btn btn-primary m-1">Add to Wishlist</a>
                             </div>
                         </div>
                     </div>`;
@@ -99,9 +106,31 @@ const buildCards = () => {
 const sizeList = (p) => {
     let domString = '';
     for (let i = 0; i < p.sizes.length; i++){
-        domString += `<a class="dropdown-item">${p.sizes[i]}</a>`
+        domString += `<option class="dropdown-item" value="${p.sizes[i]}">${p.sizes[i]}</option>`
     }
     return domString;
+}
+
+const addToCart = (e) => {
+    const target = e.target.id;
+    for (let i = 0; i < products.length; i++){
+        if (target === `add-to-cart-${[i]}`){
+            let x = document.querySelector(`#size-list-${i}`);
+            products[i].selectedSize = x.options[x.selectedIndex].value;
+            cart.push(products[i]);
+        }
+    }
+    printToDom('cart-nav', `Cart: ${cart.length}`);
+}
+
+const addToWishlist = (e) => {
+    const target = e.target.id;
+    for (let i = 0; i < products.length; i++){
+        if (target === `add-to-wishlist-${[i]}`){
+            wishlist.push(products[i]);
+        }
+    }
+    printToDom('wishlist-nav', `Wishlist: ${wishlist.length}`);
 }
 
 const buildCartProducts = () => {
@@ -133,7 +162,8 @@ const buildCartProducts = () => {
                 </div>
             </div>`
     }
-    printToDom('containerCartProducts', domString);
+
+    return domString
 }
 
 const buildOrderSummary = () => {
@@ -163,24 +193,24 @@ const buildOrderSummary = () => {
                     </div>
                 </div>`
                 
-    printToDom('containerOrderSummary', domString);
+    return domString
 }
 
 const buildWishlist = () => {
     let domString = '<h5 class="card-header text-center">Wishlist</h5>';
     
-    for (let j = 0; j < products.length; j++) {
+    for (let j = 0; j < wishlist.length; j++) {
         domString += `
         <div class="row no-gutters" id="cardWishlist">
                     <div class="card mb-3 d-flex p-2 mx-2" style="max-width: 350px;">
                     <div class="row no-gutters">
                         <div class="col" id="containerImage" style="height: 100%;">
-                            <img src="${products[j].image}" class="card-img">
+                            <img src="${wishlist[j].image}" class="card-img">
                         </div>
                         <div class="col-4">
                             <div class="">
-                                <h5 class="">${products[j].name}</h5>
-                                <p class="">Price: ${products[j].price}</p>
+                                <h5 class="">${wishlist[j].name}</h5>
+                                <p class="">Price: ${wishlist[j].price}</p>
                             </div>
                         </div> 
                             <div class="col text-right" id="wishlistBtns">
@@ -193,25 +223,36 @@ const buildWishlist = () => {
                 </div>`
         }
 
-  printToDom('containerWishlist', domString);
-}
-
-const buttonEvents = () => {
-    document.querySelector("#btnCartPage").addEventListener('click', showCartPage);
+  return domString
 }
 
 const showCartPage = () => {
+    printToDom('cardContainer', buildCartProducts());
+    printToDom('containerOrderSummary', buildOrderSummary());
+    printToDom('containerWishlist', buildWishlist());
 
-    printToDom('cardContainer', buildCartProducts);
+    // if (e.target.id === "wishlist-nav") {
+    //     document.getElementById("wishlist-nav").classList.add("active");
+    // }
+    // TO DO ADD ACTIVE ON NAV
+}
 
+const showWishlistPage = () => {
+    printToDom('cardContainer', buildWishlist());
+}
+
+const buttonEvents = () => {
+    for (let i = 0; i < products.length; i ++){
+        document.querySelector(`#add-to-cart-${[i]}`).addEventListener('click', addToCart);
+        document.querySelector(`#add-to-wishlist-${[i]}`).addEventListener('click', addToWishlist)
+    }
+    document.querySelector("#cart-nav").addEventListener('click', showCartPage);
+    document.querySelector("#wishlist-nav").addEventListener('click', showWishlistPage);
 }
 
 const init = () => {
     buildCards();
     buttonEvents();
-    // buildCartProducts();
-    // buildOrderSummary();
-    // buildWishlist();
 };
 
 init();
