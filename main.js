@@ -107,24 +107,24 @@ const sizeList = (p) => {
 const buildCartProducts = () => {
     let domString = '';
     
-    for (let j = 0; j < products.length; j++) {
+    for (let j = 0; j < cart.length; j++) {
     domString += `<div class="card mb-3 d-flex" style="max-width: 540px;">
                 <div class="row no-gutters">
                     <div class="col-md-4" id="containerImage" style="height: 100%;">
-                        <img src="${products[j].image}" class="card-img">
+                        <img src="${cart[j].image}" class="card-img">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">${products[j].name}</h5>
+                            <h5 class="card-title">${cart[j].name}</h5>
                             <p class="card-text"><small class="text-muted">#1234567890</small></p>
                             <p class="card-text">Size: </p>
-                            <p class="">Price: ${products[j].price}</p>
+                            <p class="">Price: ${cart[j].price}</p>
                         </div>
                     </div> 
                     <div class="row no-gutters"
                         <div class="col-sm-8">
                             <p class="">QTY:</p>
-                            <input type="text" class="" id="inputQuanity" style="width: 20%;">
+                            <input type="text" class="" id="inputQuantity-${j}" style="width: 20%;">
                         </div>
                         <div class="col-sm-4">
                             <button type="button" class="btn btn-danger">Remove</button>
@@ -194,15 +194,24 @@ const buildWishlist = () => {
         }
 
   printToDom('containerWishlist', domString);
+}
+
+const buttonEvents = () => {
+    document.querySelector("#btnCartPage").addEventListener('click', showCartPage);
+}
+
+const showCartPage = () => {
+
+    printToDom('cardContainer', buildCartProducts);
 
 }
 
-
 const init = () => {
     buildCards();
-    buildCartProducts();
-    buildOrderSummary();
-    buildWishlist();
+    buttonEvents();
+    // buildCartProducts();
+    // buildOrderSummary();
+    // buildWishlist();
 };
 
 init();
