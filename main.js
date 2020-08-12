@@ -80,13 +80,14 @@ const cart = [];
 const wishlist = [];
 
 const printToDom = (divId, textToPrint) => {
-    const selectedDiv = document.getElementById(divId);
-    selectedDiv.innerHTML = textToPrint;
+	const selectedDiv = document.getElementById(divId);
+	selectedDiv.innerHTML = textToPrint;
 };
 
-const buildCards = (arr) => {
+const buildCards = (arr, length, divId) => {
     let domString = '';
-    for (let i = 0; i < arr.length; i++){
+    for (let i = 0; i < length; i++){
+        if (document.URL.includes('products.html')) {
         domString += `<div class="card text-center" style="width: 30%; margin: 1%;">
                         <h5 class="card-title mt-2">${arr[i].name}</h5>
                         <img class="card-img-top" src="${arr[i].image}" alt="Card image cap">
@@ -103,39 +104,53 @@ const buildCards = (arr) => {
                             </div>
                         </div>
                     </div>`;
-    }
-    printToDom('cardContainer', domString);
-}
+        } else if (document.URL.includes('index.html')) {
+            domString += `<div class="card text-center" style="width: 30%; margin: 1%;">
+                        <h5 class="card-title mt-2">${arr[i].name}</h5>
+                        <img class="card-img-top" src="${arr[i].image}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">${arr[i].price}</h5>
+                            <p class="card-text">${arr[i].description}</p>
+                        </div>
+                    </div>`;
+        }
+	}
+	printToDom(divId, domString);
+};
+
+const shuffle = arr => {
+    return arr.sort(() => Math.random() - 0.5);
+};
 
 const sizeList = (p) => {
-    let domString = '';
-    for (let i = 0; i < p.sizes.length; i++){
-        domString += `<option class="dropdown-item" value="${p.sizes[i]}">${p.sizes[i]}</option>`
-    }
-    return domString;
-}
+	let domString = '';
+	for (let i = 0; i < p.sizes.length; i++) {
+		domString += `<option class="dropdown-item" value="${p.sizes[i]}">${p.sizes[i]}</option>`;
+	}
+	return domString;
+};
 
 const addToCart = (e) => {
-    const target = e.target.id;
-    for (let i = 0; i < products.length; i++){
-        if (target === `add-to-cart-${[i]}`){
-            let x = document.querySelector(`#size-list-${i}`);
-            products[i].selectedSize = x.options[x.selectedIndex].value;
-            cart.push(products[i]);
-        }
-    }
-    printToDom('cart-nav', `Cart: ${cart.length}`);
-}
+	const target = e.target.id;
+	for (let i = 0; i < products.length; i++) {
+		if (target === `add-to-cart-${[i]}`) {
+			let x = document.querySelector(`#size-list-${i}`);
+			products[i].selectedSize = x.options[x.selectedIndex].value;
+			cart.push(products[i]);
+		}
+	}
+	printToDom('cart-nav', `Cart: ${cart.length}`);
+};
 
 const addToWishlist = (e) => {
-    const target = e.target.id;
-    for (let i = 0; i < products.length; i++){
-        if (target === `add-to-wishlist-${[i]}`){
-            wishlist.push(products[i]);
-        }
-    }
-    printToDom('wishlist-nav', `Wishlist: ${wishlist.length}`);
-}
+	const target = e.target.id;
+	for (let i = 0; i < products.length; i++) {
+		if (target === `add-to-wishlist-${[i]}`) {
+			wishlist.push(products[i]);
+		}
+	}
+	printToDom('wishlist-nav', `Wishlist: ${wishlist.length}`);
+};
 
 const filterProducts = (e) => {
     const target = e.target.id;
@@ -148,10 +163,10 @@ const filterProducts = (e) => {
     if (target === e.currentTarget.id){
         return 
     } else if (target === "all"){
-        buildCards(products);
+        buildCards(products, products.length, 'cardContainer');
         buttonEvents(products);
     } else {
-        buildCards(selectedProducts);
+        buildCards(selectedProducts, selectedProducts.length, 'cardContainer');
         buttonEvents(selectedProducts);
     }
 }
@@ -165,8 +180,12 @@ const buttonEvents = (arr) => {
 }
 
 const init = () => {
-    buildCards(products);
-    buttonEvents(products);
+    if (document.URL.includes('index.html')) {
+        buildCards(shuffle(products), 3, 'featured-products')
+    } else if (document.URL.includes('products.html')) {
+        buildCards(products, products.length, 'cardContainer');
+        buttonEvents(products);
+    }
 };
 
 init();
