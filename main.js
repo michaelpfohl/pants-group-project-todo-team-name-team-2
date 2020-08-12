@@ -149,13 +149,15 @@ const filterProducts = (e) => {
         return 
     } else if (target === "all"){
         buildCards(products);
+        buttonEvents(products);
     } else {
         buildCards(selectedProducts);
+        buttonEvents(selectedProducts);
     }
 }
 
-const buttonEvents = () => {
-    for (let i = 0; i < products.length; i ++){
+const buttonEvents = (arr) => {
+    for (let i = 0; i < arr.length; i ++){
         document.querySelector(`#add-to-cart-${[i]}`).addEventListener('click', addToCart);
         document.querySelector(`#add-to-wishlist-${[i]}`).addEventListener('click', addToWishlist)
     }
@@ -164,7 +166,7 @@ const buttonEvents = () => {
 
 const init = () => {
     buildCards(products);
-    buttonEvents();
+    buttonEvents(products);
 };
 
 init();
