@@ -156,7 +156,7 @@ const buildCartProducts = () => {
                             <input type="text" class="" id="inputQuantity-${j}" style="width: 20%;">
                         </div>
                         <div class="col-sm-4">
-                            <button type="button" class="btn btn-danger">Remove</button>
+                            <button type="button" class="btn btn-danger" id="btnRemoveFromCart";>Remove</button>
                         </div>
                     </div>
                 </div>
@@ -169,7 +169,8 @@ const buildCartProducts = () => {
 const buildOrderSummary = () => {
     let domString = '';
 
-    domString += `<div class="" id="cardOrderSummary">
+    for (let j = 0; j < cart.length; j++)
+    domString = `<div class="" id="cardOrderSummary">
                     <div class="card mb-5" style="width: 300px;">
                         <h5 class="card-header text-center" style="background-color: #C7B8B4;">Order Summary</h5>
                         <div class="card-body">
@@ -180,9 +181,9 @@ const buildOrderSummary = () => {
                                     <li><strong>Estimated Total</strong></li>
                                 </div>
                                 <div class="col-4" id="checkoutTotals">
-                                    <li>$55.00</li>
-                                    <li>-$5.00</li>
-                                    <li><strong>$50.00</strong></li>
+                                    <li id="subtotal">$55.00</li>
+                                    <li id="savings">-$5.00</li>
+                                    <li id="estimatedTotal"><strong>$50.00</strong></li>
                                 </div>
                             </div>
                             <p class="card-text">Taxes calculated at checkout</p>
@@ -239,6 +240,37 @@ const showCartPage = () => {
 
 const showWishlistPage = () => {
     printToDom('cardContainer', buildWishlist());
+    document.querySelector("btnAddToCart").addEventListener('click', wishlistAddToCart);
+}
+
+// const removeFromCart = (e) => {
+//     // const target = e.target.id;
+//     // if (e.target.id === "btnRemoveFromCart") {
+//     //     cart.splice(e.target.id, 1);
+//     // }
+//     // $("button").click(function(){
+//     //     $("").remove();
+//     //   });
+//   };
+
+// const orderSummaryEstimate= () => {
+    // let cartSubtotal = cart.reduce(function(prev, cur) {
+    //     return prev + cart.price;
+    //   }, 0);
+//     let initialValue = 0
+//     let sum = cart.reduce(
+//     (accumulator, currentValue) => accumulator + cart.price
+//     , initialValue
+// )
+// }
+// console.log(sum);
+
+const wishlistAddToCart = (e) => {
+    for (let i = 0; i < wishlist.length; i ++) {
+    if (e.target.id === "btnAddToCart"){
+            cart.push(wishlist[i]);
+        }
+    }
 }
 
 const buttonEvents = () => {
@@ -248,11 +280,14 @@ const buttonEvents = () => {
     }
     document.querySelector("#cart-nav").addEventListener('click', showCartPage);
     document.querySelector("#wishlist-nav").addEventListener('click', showWishlistPage);
+    // document.querySelector("#btnRemoveFromCart").addEventListener('click', removeFromCart);
 }
 
 const init = () => {
     buildCards();
     buttonEvents();
+    // orderSummaryEstimate();
+    // removeFromCart();
 };
 
 init();
