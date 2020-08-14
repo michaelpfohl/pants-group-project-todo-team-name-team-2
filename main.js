@@ -73,6 +73,8 @@ const wishlist = [];
 const printToDom = (divId, textToPrint) => {
     const selectedDiv = document.getElementById(divId);
     selectedDiv.innerHTML = textToPrint;
+    console.log('divId', divId);
+    console.log('textToPrint', textToPrint);
 };
 
 const childPrintToDom = (divId, textToPrint) => {
@@ -119,6 +121,7 @@ const addToCart = (e) => {
             products[i].selectedSize = x.options[x.selectedIndex].value;
             cart.push(products[i]);
         }
+        console.log("clicked");
     }
     printToDom('cart-nav', `Cart: ${cart.length}`);
 }
@@ -181,7 +184,7 @@ const buildOrderSummary = () => {
                                     <li><strong>Estimated Total</strong></li>
                                 </div>
                                 <div class="col-4" id="checkoutTotals">
-                                    <li id="subtotal">$55.00</li>
+                                    <li id="subtotal">${orderSummaryEstimate()}</li>
                                     <li id="savings">-$5.00</li>
                                     <li id="estimatedTotal"><strong>$50.00</strong></li>
                                 </div>
@@ -199,7 +202,7 @@ const buildOrderSummary = () => {
 
 const buildWishlist = () => {
     let domString = '<h5 class="card-header text-center">Wishlist</h5>';
-    
+    console.log('wishlist', wishlist);
     for (let j = 0; j < wishlist.length; j++) {
         domString += `
         <div class="row no-gutters" id="cardWishlist">
@@ -211,12 +214,15 @@ const buildWishlist = () => {
                         <div class="col-4">
                             <div class="">
                                 <h5 class="">${wishlist[j].name}</h5>
+                                <select class="form-control m-2" id="size-list-${j}">
+                                ${sizeList(products[j])}
+                            </select>
                                 <p class="">Price: ${wishlist[j].price}</p>
                             </div>
                         </div> 
                             <div class="col text-right" id="wishlistBtns">
-                                <button type="button" class="btn btn-danger btn-sm" id="btnRemoveFromWishlist">Remove</button>
-                                <button type="button" class="btn btn-primary btn-sm" id="btnAddToCart">Add to Cart</button>
+                                <button type="button" class="btn btn-danger btn-sm" id="btnRemoveFromWishlist-${[j]}">Remove</button>
+                                <button type="button" class="btn btn-primary btn-sm" id="btnAddToCartFromWishlist-${[j]}">Add to Cart</button>
                             </div>
                     </div>
                     </div>
@@ -231,6 +237,7 @@ const showCartPage = () => {
     printToDom('cardContainer', buildCartProducts());
     printToDom('containerOrderSummary', buildOrderSummary());
     printToDom('containerWishlist', buildWishlist());
+    // buttonEvents(wishlist);
 
     // if (e.target.id === "wishlist-nav") {
     //     document.getElementById("wishlist-nav").classList.add("active");
@@ -240,52 +247,90 @@ const showCartPage = () => {
 
 const showWishlistPage = () => {
     printToDom('cardContainer', buildWishlist());
-    document.querySelector("btnAddToCart").addEventListener('click', wishlistAddToCart);
+    buttonEvents(wishlist);
+    // document.querySelector("btnAddToCart").addEventListener('click', wishlistAddToCart);
 }
 
-// const removeFromCart = (e) => {
-//     // const target = e.target.id;
-//     // if (e.target.id === "btnRemoveFromCart") {
-//     //     cart.splice(e.target.id, 1);
-//     // }
-//     // $("button").click(function(){
-//     //     $("").remove();
-//     //   });
-//   };
+const removeFromCart = (e) => {
+    const target = e.target.id;
+    if (e.target.id === "btnRemoveFromCart") {
+        cart.splice(e.target.id, 1);
+    }
+    $("button").click(function(){
+        $("").remove();
+      });
+  };
 
-// const orderSummaryEstimate= () => {
-    // let cartSubtotal = cart.reduce(function(prev, cur) {
-    //     return prev + cart.price;
-    //   }, 0);
-//     let initialValue = 0
-//     let sum = cart.reduce(
-//     (accumulator, currentValue) => accumulator + cart.price
-//     , initialValue
-// )
-// }
-// console.log(sum);
+const orderSummaryEstimate = () => {
+    let total = '';
+
+    for (let i = 0; i < cart.length; i++) {
+        total += parseInt(cart[i].price.substr(1),10)
+        console.log('total', total);
+    }
+    return total;
+}
 
 const wishlistAddToCart = (e) => {
-    for (let i = 0; i < wishlist.length; i ++) {
-    if (e.target.id === "btnAddToCart"){
-            cart.push(wishlist[i]);
+    const target = e.target.id;
+    for (let i = 0; i < products.length; i++){
+        if (target === `btnAddToCartFromWishlist-${[i]}`){
+            cart.push(products[i]);
         }
+        buttonEvents(wishlist);
     }
+
+    printToDom('cart-nav', `Cart: ${cart.length}`);
 }
 
-const buttonEvents = () => {
-    for (let i = 0; i < products.length; i ++){
-        document.querySelector(`#add-to-cart-${[i]}`).addEventListener('click', addToCart);
-        document.querySelector(`#add-to-wishlist-${[i]}`).addEventListener('click', addToWishlist)
+const removeFromWishlist = (e) => {
+    const target = e.target.id;
+    for (let i = 0; i < wishlist.length; i++){
+        if (target === `btnRemoveFromWishlist-${[i]}`){
+            wishlist.splice(target, 1);
+        }
+        buttonEvents(wishlist);
+        console.log("remove")
+
     }
+    console.log(wishlist);
+    printToDom('cardContainer', buildWishlist());
+}
+
+
+    // const target = e.target.id;
+    // if (e.target.id === "btnRemoveFromCart") {
+    //     cart.splice(e.target.id, 1);
+    // }
+    // const ctype = e.target.type;
+    // const target = e.target.id;
+
+    // if (ctype === 'button') {
+    //     products.splice(target, 1);
+
+    //     buildWishlist(products[i]);
+
+
+const buttonEvents = (arr) => {
     document.querySelector("#cart-nav").addEventListener('click', showCartPage);
     document.querySelector("#wishlist-nav").addEventListener('click', showWishlistPage);
+    if (arr === products) {
+    for (let i = 0; i < arr.length; i ++){
+        document.querySelector(`#add-to-cart-${[i]}`).addEventListener('click', addToCart);
+        document.querySelector(`#add-to-wishlist-${[i]}`).addEventListener('click', addToWishlist);
+    }
+} else if (arr === wishlist) {
+    for (let i = 0; i < arr.length; i ++){
+        document.querySelector(`#btnAddToCartFromWishlist-${[i]}`).addEventListener('click', wishlistAddToCart);
+        document.querySelector(`#btnRemoveFromWishlist-${[i]}`).addEventListener('click', removeFromWishlist);
+    }
+}
     // document.querySelector("#btnRemoveFromCart").addEventListener('click', removeFromCart);
 }
 
 const init = () => {
     buildCards();
-    buttonEvents();
+    buttonEvents(products);
     // orderSummaryEstimate();
     // removeFromCart();
 };
