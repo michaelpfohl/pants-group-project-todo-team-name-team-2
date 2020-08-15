@@ -3,63 +3,63 @@
 const products = [
     {
         name: 'Jodhpur 1',
-        price: '$20',
+        price: 20,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
         sizes: [4,5,6,7,8,9]
     },
     {
         name: 'Jodhpur 2',
-        price: '$20',
+        price: 20,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
         sizes: [4,5,6,7,8,9]
     },
     {
         name: 'Jodhpur 3',
-        price: '$20',
+        price: 20,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
         sizes: [4,5,6,7,8,9]
     },
     {
         name: 'Jodhpur 4',
-        price: '$20',
+        price: 20,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
         sizes: [4,5,6,7,8,9]
     },
     {
         name: 'Jodhpur 5',
-        price: '$20',
+        price: 20,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
         sizes: [4,5,6,7,8,9]
     },
     {
         name: 'Jodhpur 6',
-        price: '$20',
+        price: 20,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
         sizes: [4,5,6,7,8,9]
     },
     {
         name: 'Jodhpur 7',
-        price: '$20',
+        price: 20,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
         sizes: [4,5,6,7,8,9]
     },
     {
         name: 'Jodhpur 8',
-        price: '$20',
+        price: 20,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
         sizes: [4,5,6,7,8,9]
     },
     {
         name: 'Jodhpur 9',
-        price: '$20',
+        price: 20,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
         sizes: [4,5,6,7,8,9]
@@ -73,13 +73,6 @@ const wishlist = [];
 const printToDom = (divId, textToPrint) => {
     const selectedDiv = document.getElementById(divId);
     selectedDiv.innerHTML = textToPrint;
-    console.log('divId', divId);
-    console.log('textToPrint', textToPrint);
-};
-
-const childPrintToDom = (divId, textToPrint) => {
-    const selectedDiv = document.getElementById(divId);
-    selectedDiv.appendChild(textToPrint);
 };
 
 const buildCards = () => {
@@ -89,7 +82,7 @@ const buildCards = () => {
                         <h5 class="card-title mt-2">${products[i].name}</h5>
                         <img class="card-img-top" src="${products[i].image}" alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title">${products[i].price}</h5>
+                            <h5 class="card-title">$${products[i].price}</h5>
                             <h5> Sizes: </h5>
                             <select class="form-control m-2" id="size-list-${i}">
                                 ${sizeList(products[i])}
@@ -121,7 +114,6 @@ const addToCart = (e) => {
             products[i].selectedSize = x.options[x.selectedIndex].value;
             cart.push(products[i]);
         }
-        console.log("clicked");
     }
     printToDom('cart-nav', `Cart: ${cart.length}`);
 }
@@ -141,27 +133,20 @@ const buildCartProducts = () => {
     
     for (let j = 0; j < cart.length; j++) {
     domString += `<div class="card mb-3 d-flex" style="max-width: 540px;">
-                <div class="row no-gutters">
-                    <div class="col-md-4" id="containerImage" style="height: 100%;">
+                <div class="row no-gutters p-3 my-2">
+                    <div class="col" id="containerImage" style="height: 100%;">
                         <img src="${cart[j].image}" class="card-img">
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-sm">
                         <div class="card-body">
                             <h5 class="card-title">${cart[j].name}</h5>
-                            <p class="card-text"><small class="text-muted">#1234567890</small></p>
-                            <p class="card-text">Size: </p>
-                            <p class="">Price: ${cart[j].price}</p>
-                        </div>
-                    </div> 
-                    <div class="row no-gutters"
-                        <div class="col-sm-8">
-                            <p class="">QTY:</p>
-                            <input type="text" class="" id="inputQuantity-${j}" style="width: 20%;">
-                        </div>
-                        <div class="col-sm-4">
-                            <button type="button" class="btn btn-danger" id="btnRemoveFromCart";>Remove</button>
+                            <p class="card-text">Size: ${cart[j].selectedSize}</p>
+                            <p class="">Price: $${cart[j].price}</p>
                         </div>
                     </div>
+                        <div class="col align-self-end text-right">
+                            <button type="button" class="btn btn-danger" id="btnRemoveFromCart-${[j]}";>Remove</button>
+                        </div>
                 </div>
             </div>`
     }
@@ -172,26 +157,24 @@ const buildCartProducts = () => {
 const buildOrderSummary = () => {
     let domString = '';
 
-    for (let j = 0; j < cart.length; j++)
     domString = `<div class="" id="cardOrderSummary">
                     <div class="card mb-5" style="width: 300px;">
                         <h5 class="card-header text-center" style="background-color: #C7B8B4;">Order Summary</h5>
                         <div class="card-body">
-                            <div class="row justify-content-between" id="gridContainer">
-                                <div class="col-8" id="checkoutTitles">
+                            <div class="d-flex justify-content-center mx-4 mb-4" id="gridContainer">
+                                <div class="col-sm" id="checkoutTitles">
                                     <li>Subtotal</li>
-                                    <li>Savings</li>
-                                    <li><strong>Estimated Total</strong></li>
+                                    <li>Tax</li>
+                                    <li><strong>Total</strong></li>
                                 </div>
-                                <div class="col-4" id="checkoutTotals">
-                                    <li id="subtotal">${orderSummaryEstimate()}</li>
-                                    <li id="savings">-$5.00</li>
-                                    <li id="estimatedTotal"><strong>$50.00</strong></li>
+                                <div class="col-sm text-right" id="checkoutTotals" style>
+                                    <li id="subtotal">$${orderSummarySubtotal()}</li>
+                                    <li id="tax">$${calculateSalesTax()}</li>
+                                    <li id="estimatedTotal"><strong>$${orderSummaryTotal()}</strong></li>
                                 </div>
                             </div>
-                            <p class="card-text">Taxes calculated at checkout</p>
-                            <div class="text-center">
-                                <button class="btn btn-primary">Checkout</button>
+                            <div class="text-center mt-3">
+                                <button class="btn btn-primary px-5">Checkout</button>
                             </div>
                         </div>
                     </div>
@@ -202,27 +185,25 @@ const buildOrderSummary = () => {
 
 const buildWishlist = () => {
     let domString = '<h5 class="card-header text-center">Wishlist</h5>';
-    console.log('wishlist', wishlist);
+
     for (let j = 0; j < wishlist.length; j++) {
         domString += `
-        <div class="row no-gutters" id="cardWishlist">
-                    <div class="card mb-3 d-flex p-2 mx-2" style="max-width: 350px;">
+        <div class="" id="cardWishlist">
+                    <div class="card d-flex p-3 my-2" style="max-width: 350px;">
                     <div class="row no-gutters">
                         <div class="col" id="containerImage" style="height: 100%;">
                             <img src="${wishlist[j].image}" class="card-img">
                         </div>
-                        <div class="col-4">
+                        <div class="col-sm">
                             <div class="">
                                 <h5 class="">${wishlist[j].name}</h5>
-                                <select class="form-control m-2" id="size-list-${j}">
-                                ${sizeList(products[j])}
-                            </select>
+                                <p class="card-text">Size: ${wishlist[j].selectedSize}</p>
                                 <p class="">Price: ${wishlist[j].price}</p>
                             </div>
                         </div> 
                             <div class="col text-right" id="wishlistBtns">
                                 <button type="button" class="btn btn-danger btn-sm" id="btnRemoveFromWishlist-${[j]}">Remove</button>
-                                <button type="button" class="btn btn-primary btn-sm" id="btnAddToCartFromWishlist-${[j]}">Add to Cart</button>
+                                <button type="button" class="btn btn-primary btn-sm mt-5" id="btnAddToCartFromWishlist-${[j]}">Add to Cart</button>
                             </div>
                     </div>
                     </div>
@@ -236,11 +217,10 @@ const buildWishlist = () => {
 const showCartPage = () => {
     printToDom('cardContainer', buildCartProducts());
     printToDom('containerOrderSummary', buildOrderSummary());
-    printToDom('containerWishlist', buildWishlist());
-    // buttonEvents(wishlist);
-
-    // if (e.target.id === "wishlist-nav") {
-    //     document.getElementById("wishlist-nav").classList.add("active");
+    buttonEvents(cart);
+    noItemsInCart();
+    // if (e.target.id === "cart-nav") {
+    //     document.getElementById("cart-nav").classList.add("active");
     // }
     // TO DO ADD ACTIVE ON NAV
 }
@@ -248,28 +228,69 @@ const showCartPage = () => {
 const showWishlistPage = () => {
     printToDom('cardContainer', buildWishlist());
     buttonEvents(wishlist);
-    // document.querySelector("btnAddToCart").addEventListener('click', wishlistAddToCart);
+    noItemsInWishlist();
+
+}
+
+const buildNoItemsInWishlist = () => {
+    let domString = '';
+
+    domString = `<div class="alert alert-success text-center" role="alert">
+                    <h4 class="alert-heading">There are no items in your Wishlist!</h4>
+                    <hr>
+                    <p class="mb-0">Head over to the Products page to start adding to your Wishlist!</p>
+  </div>`
+    
+    return domString;
+
+}
+
+const buildNoItemsInCart = () => {
+    let domString = '';
+
+    domString = `<div class="alert alert-success text-center" role="alert">
+                    <h4 class="alert-heading">There are no items in your Cart!</h4>
+                    <hr>
+                    <p class="mb-0">Head over to the Products page to start adding to your Cart!</p>
+                </div>`
+    
+    return domString;
+
 }
 
 const removeFromCart = (e) => {
     const target = e.target.id;
-    if (e.target.id === "btnRemoveFromCart") {
-        cart.splice(e.target.id, 1);
+    for (let i = 0; i < cart.length; i++){
+        if (target === `btnRemoveFromCart-${[i]}`){
+            cart.splice(target,1);
+        }
     }
-    $("button").click(function(){
-        $("").remove();
-      });
-  };
-
-const orderSummaryEstimate = () => {
-    let total = '';
-
-    for (let i = 0; i < cart.length; i++) {
-        total += parseInt(cart[i].price.substr(1),10)
-        console.log('total', total);
-    }
-    return total;
+    printToDom('cardContainer', buildCartProducts());
+    printToDom('cart-nav', `Cart: ${wishlist.length}`);
+    buttonEvents(cart);
+    noItemsInCart();
 }
+
+// const removeFromCart = (e) => {
+//     const target = e.target.id;
+//     for (let i = 0; i < cart.length; i++){
+//         if (target === `btnRemoveFromCart-${[i]}`){
+//             cart.splice(target,1);
+//         }
+//     }
+//     printToDom('cardContainer', buildCartProducts());
+//     printToDom('cart-nav', `Cart: ${cart.length}`);
+//     buttonEvents(products);
+// } 
+
+//     const target = e.target.id;
+//     if (e.target.id === "btnRemoveFromCart") {
+//         cart.splice(e.target.id, 1);
+//     }
+//     $("button").click(function(){
+//         $("").remove();
+//       });
+//   }
 
 const wishlistAddToCart = (e) => {
     const target = e.target.id;
@@ -287,14 +308,27 @@ const removeFromWishlist = (e) => {
     const target = e.target.id;
     for (let i = 0; i < wishlist.length; i++){
         if (target === `btnRemoveFromWishlist-${[i]}`){
-            wishlist.splice(target, 1);
+            wishlist.splice(target,1);
         }
-        buttonEvents(wishlist);
-        console.log("remove")
-
     }
-    console.log(wishlist);
     printToDom('cardContainer', buildWishlist());
+    printToDom('wishlist-nav', `Wishlist: ${wishlist.length}`);
+    buttonEvents(wishlist);
+    noItemsInWishlist();
+}
+
+const noItemsInWishlist = () => {
+    if (wishlist.length === 0) {
+        printToDom('wishlist-nav', `Wishlist`);
+        printToDom('cardContainer', buildNoItemsInWishlist());
+    }
+}
+
+const noItemsInCart = () => {
+    if (cart.length === 0) {
+        printToDom('cart-nav', `Cart:`);
+        printToDom('cardContainer', buildNoItemsInCart());
+    }
 }
 
 
@@ -310,6 +344,29 @@ const removeFromWishlist = (e) => {
 
     //     buildWishlist(products[i]);
 
+    let tax = 0;
+    let subtotal = 0;
+  
+  const orderSummarySubtotal = () => {
+      for (let i = 0; i < cart.length; i++) {
+          subtotal += cart[i].price
+      }
+      return subtotal;
+  }
+  
+  const calculateSalesTax = () => {
+      tax = subtotal * 0.07
+  
+      return tax.toFixed(2);
+  }
+  
+  const orderSummaryTotal = () => {
+      let total = 0;
+     
+      total = subtotal + tax
+  
+      return total.toFixed(2);
+  } 
 
 const buttonEvents = (arr) => {
     document.querySelector("#cart-nav").addEventListener('click', showCartPage);
@@ -324,15 +381,16 @@ const buttonEvents = (arr) => {
         document.querySelector(`#btnAddToCartFromWishlist-${[i]}`).addEventListener('click', wishlistAddToCart);
         document.querySelector(`#btnRemoveFromWishlist-${[i]}`).addEventListener('click', removeFromWishlist);
     }
+} else if (arr === cart) {
+    for (let i = 0; i < arr.length; i ++) {
+        document.querySelector(`#btnRemoveFromCart-${[i]}`).addEventListener('click', removeFromCart);
+    }
 }
-    // document.querySelector("#btnRemoveFromCart").addEventListener('click', removeFromCart);
 }
 
 const init = () => {
     buildCards();
     buttonEvents(products);
-    // orderSummaryEstimate();
-    // removeFromCart();
 };
 
 init();
