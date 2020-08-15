@@ -66,6 +66,14 @@ const products = [
     }
 ];
 
+const submit = []
+
+const comments = [];
+
+const cart = [];
+
+const wishlist = [];
+
 const printToDom = (divId, textToPrint) => {
     const selectedDiv = document.getElementById(divId);
     selectedDiv.innerHTML = textToPrint;
@@ -87,8 +95,8 @@ const buildCards = () => {
                             </div>
                             <p class="card-text">${products[i].description}</p>
                             <div class="container d-flex">
-                                <a href="#" class="btn btn-primary m-1">Add to Cart</a>
-                                <a href="#" class="btn btn-primary m-1">Add to Wishlist</a>
+                                <a id="add-to-cart-${[i]}"class="btn btn-primary m-1">Add to Cart</a>
+                                <a id="add-to-wishlist-${[i]}"class="btn btn-primary m-1">Add to Wishlist</a>
                             </div>
                         </div>
                     </div>`;
@@ -104,8 +112,77 @@ const sizeList = (p) => {
     return domString;
 }
 
+const addToCart = (e) => {
+    const target = e.target.id;
+    for (let i = 0; i < products.length; i++){
+        if (target === `add-to-cart-${[i]}`){
+            cart.push(products[i]);
+        }
+    }
+    printToDom('cart-nav', `Cart: ${cart.length}`);
+}
+
+const addToWishlist = (e) => {
+    const target = e.target.id;
+    for (let i = 0; i < products.length; i++){
+        if (target === `add-to-wishlist-${[i]}`){
+            wishlist.push(products[i]);
+        }
+    }
+    printToDom('wishlist-nav', `Wishlist: ${wishlist.length}`);
+}
+
+const buttonEvents = () => {
+    for (let i = 0; i < products.length; i ++){
+        document.querySelector(`#add-to-cart-${[i]}`).addEventListener('click', addToCart);
+        document.querySelector(`#add-to-wishlist-${[i]}`).addEventListener('click', addToWishlist)
+    }
+}
+
+const submitButtonClick = () => {
+     document.querySelector('#submit-button').addEventListener('click',commentPush);
+     document.querySelector('#submit-button').addEventListener('click',buildComment);
+}
+
+const commentPush = () => {
+    let comment = {}
+    comment.name = document.querySelector('#nameInput').value
+    comment.email = document.querySelector('#inputEmail').value
+    comment.text = document.querySelector('#exampleTextarea').value
+    comments.push(comment)
+}
+
+const buildComment = () => {
+    let domString = '';
+    for (let i = 0; i < comments.length; i ++) {
+     domString +=  
+ `<section>
+    <h2>Comments</h2>
+    <div class="media">
+      <img src="https://placehold.it/64x64" alt="Media object image">
+      <div class="media-body">
+        <p><a href="mailto:example@domain.com">${comments[i].name}</a> (${comments[i].email})</p>
+        <p>${comments[i].text}</p>
+        <button type="button" class="btn btn-sm btn-primary">Reply</button>
+      </div>
+      <hr>
+      </section>`;
+
+      printToDom('submitForm', domString);
+}
+}
+
+
+
 const init = () => {
-    buildCards();
+    if (document.URL.includes('index.html')) {
+        buildCards(shuffle(products), 3, 'featured-products')
+    } else if (document.URL.includes('products.html')) {
+        buildCards(products, products.length, 'cardContainer');
+        buttonEvents(products);
+    } else if ( document.URL.includes('about.html')) {
+        submitButtonClick();
+    }
 };
 
 init();
