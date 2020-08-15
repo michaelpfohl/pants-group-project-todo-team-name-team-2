@@ -75,6 +75,10 @@ const products = [
     }
 ];
 
+const submit = []
+
+const comments = [];
+
 const cart = [];
 
 const wishlist = [];
@@ -179,12 +183,50 @@ const buttonEvents = (arr) => {
     document.querySelector("#button-container").addEventListener('click', filterProducts)
 }
 
+const submitButtonClick = () => {
+     document.querySelector('#submit-button').addEventListener('click',commentPush);
+     document.querySelector('#submit-button').addEventListener('click',buildComment);
+}
+
+const commentPush = () => {
+    let comment = {}
+    comment.name = document.querySelector('#nameInput').value
+    comment.email = document.querySelector('#inputEmail').value
+    comment.text = document.querySelector('#exampleTextarea').value
+    comments.push(comment)
+}
+
+const buildComment = () => {
+    let domString = '';
+    for (let i = 0; i < comments.length; i ++) {
+     domString +=  
+ `<section>
+    <h2>Comments</h2>
+    <div class="media">
+      <img src="https://placehold.it/64x64" alt="Media object image">
+      <div class="media-body">
+        <p><a href="mailto:example@domain.com">${comments[i].name}</a> (${comments[i].email})</p>
+        <p>${comments[i].text}</p>
+        <button type="button" class="btn btn-sm btn-primary">Reply</button>
+      </div>
+      <hr>
+      </section>`;
+
+      printToDom('submitForm', domString);
+}
+}
+
+
+
 const init = () => {
     if (document.URL.includes('index.html')) {
         buildCards(shuffle(products), 3, 'featured-products')
     } else if (document.URL.includes('products.html')) {
         buildCards(products, products.length, 'cardContainer');
         buttonEvents(products);
+    } else if ( document.URL.includes('about.html')) {
+        submitButtonClick();
+
     }
 };
 
