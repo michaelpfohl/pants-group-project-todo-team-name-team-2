@@ -2,7 +2,7 @@
 
 const products = [
     {
-        name: 'Jodhpur 1',
+        name: 'Jodhpur Sleek 1',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
@@ -10,7 +10,7 @@ const products = [
         type: 'traditional'
     },
     {
-        name: 'Jodhpur 2',
+        name: 'Jodhpur Sleek 2',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
@@ -18,7 +18,7 @@ const products = [
         type: 'modern'
     },
     {
-        name: 'Jodhpur 3',
+        name: 'Jodhpur Stylish 3',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
@@ -26,7 +26,7 @@ const products = [
         type: 'experimental'
     },
     {
-        name: 'Jodhpur 4',
+        name: 'Jodhpur Sleek 4',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
@@ -34,7 +34,7 @@ const products = [
         type: 'traditional'
     },
     {
-        name: 'Jodhpur 5',
+        name: 'Jodhpur Stylish 5',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
@@ -42,7 +42,7 @@ const products = [
         type: 'experimental'
     },
     {
-        name: 'Jodhpur 6',
+        name: 'Jodhpur Cozy 6',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
@@ -50,7 +50,7 @@ const products = [
         type: 'experimental'
     },
     {
-        name: 'Jodhpur 7',
+        name: 'Jodhpur  Roomy 7',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
@@ -58,7 +58,7 @@ const products = [
         type: 'modern'
     },
     {
-        name: 'Jodhpur 8',
+        name: 'Jodhpur Roomy 8',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
@@ -66,7 +66,7 @@ const products = [
         type: 'modern'
     },
     {
-        name: 'Jodhpur 9',
+        name: 'Jodhpur Cozy 9',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
@@ -83,6 +83,8 @@ const cart = [];
 
 const wishlist = [];
 
+let slideIndex = 0;
+
 const printToDom = (divId, textToPrint) => {
 	const selectedDiv = document.getElementById(divId);
 	selectedDiv.innerHTML = textToPrint;
@@ -92,9 +94,11 @@ const buildCards = (arr, length, divId) => {
     let domString = '';
     for (let i = 0; i < length; i++){
         if (document.URL.includes('products.html')) {
-        domString += `<div class="card text-center" style="width: 331px; margin: 1%;">
+        domString += `<div id="product-${i}"class="card text-center product--card" style="width: 331px; margin: 1%;">
                         <h5 class="card-title mt-2">${arr[i].name}</h5>
-                        <img class="card-img-top" src="${arr[i].image}" alt="Card image cap">
+                        <img class="card-img-top" src="${
+													arr[i].image
+												}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">${arr[i].price}</h5>
                             <h5> Sizes: </h5>
@@ -109,7 +113,7 @@ const buildCards = (arr, length, divId) => {
                         </div>
                     </div>`;
         } else if (document.URL.includes('index.html')) {
-            domString += `<div class="card text-center" style="width: 30%; margin: 1%;">
+            domString += `<div class="card text-center product--card" style="width: 30%; margin: 1%;">
                         <h5 class="card-title mt-2">${arr[i].name}</h5>
                         <img class="card-img-top" src="${arr[i].image}" alt="Card image cap">
                         <div class="card-body">
@@ -117,13 +121,13 @@ const buildCards = (arr, length, divId) => {
                             <p class="card-text">${arr[i].description}</p>
                         </div>
                     </div>`;
-        }
+		}
 	}
 	printToDom(divId, domString);
 };
 
-const shuffle = arr => {
-    return arr.sort(() => Math.random() - 0.5);
+const shuffle = (arr) => {
+	return arr.sort(() => Math.random() - 0.5);
 };
 
 const sizeList = (p) => {
@@ -157,22 +161,33 @@ const addToWishlist = (e) => {
 };
 
 const filterProducts = (e) => {
-    const target = e.target.id;
-    const selectedProducts = [];
-    for (let i = 0; i < products.length; i++){
-        if(products[i].type === target){
-            selectedProducts.push(products[i]);
+	const target = e.target.id;
+	const selectedProducts = [];
+	for (let i = 0; i < products.length; i++) {
+		if (products[i].type === target) {
+			selectedProducts.push(products[i]);
+		}
+	}
+	if (target === e.currentTarget.id) {
+		return;
+	} else if (target === 'all') {
+		buildCards(products, products.length, 'cardContainer');
+		buttonEvents(products);
+	} else {
+		buildCards(selectedProducts, selectedProducts.length, 'cardContainer');
+		buttonEvents(selectedProducts);
+	}
+};
+
+const searchProducts = (e) => {
+    const searchedProducts = [];
+    let search = e.target.value.toLowerCase();
+    for (let i = 0; i < products.length; i++) {
+        if (products[i].name.toLowerCase().includes(search)){
+            searchedProducts.push(products[i]);
         }
     }
-    if (target === e.currentTarget.id){
-        return 
-    } else if (target === "all"){
-        buildCards(products, products.length, 'cardContainer');
-        buttonEvents(products);
-    } else {
-        buildCards(selectedProducts, selectedProducts.length, 'cardContainer');
-        buttonEvents(selectedProducts);
-    }
+    buildCards(searchedProducts, searchedProducts.length, 'cardContainer');
 }
 
 const buttonEvents = (arr) => {
@@ -180,7 +195,8 @@ const buttonEvents = (arr) => {
         document.querySelector(`#add-to-cart-${[i]}`).addEventListener('click', addToCart);
         document.querySelector(`#add-to-wishlist-${[i]}`).addEventListener('click', addToWishlist)
     }
-    document.querySelector("#button-container").addEventListener('click', filterProducts)
+    document.querySelector('#button-container').addEventListener('click', filterProducts)
+    document.querySelector('#product-searchbar').addEventListener('input', searchProducts)
 }
 
 const submitButtonClick = () => {
@@ -228,6 +244,7 @@ const buildComment = () => {
 }
 }
 
+
 const commentBtnClick = (id) => {
     document.querySelector(`#comment-button${id}`).addEventListener('click', () => {
 
@@ -266,16 +283,34 @@ const replyToComment = (e) => {
 	}
 
 
+const slideButtonListener = () => {
+	document.getElementById('slide-right').addEventListener('click', function () {
+		showSlide((slideIndex += 1));
+	});
+	document.getElementById('slide-left').addEventListener('click', function () {
+		showSlide((slideIndex += -1));
+	});
+};
+
+
+const showSlide = (n) => {
+    const selectedDiv = document.getElementsByClassName('review-slide');
+	for (let i = 0; i < selectedDiv.length; i++) {
+        selectedDiv[i].style.display = 'none';
+    }
+    selectedDiv[Math.abs(n) % selectedDiv.length].style.display = 'block';
+};
 
 const init = () => {
-    if (document.URL.includes('index.html')) {
-        buildCards(shuffle(products), 3, 'featured-products')
-    } else if (document.URL.includes('products.html')) {
-        buildCards(products, products.length, 'cardContainer');
-        buttonEvents(products);
-    } else if ( document.URL.includes('about.html')) {
+	if (document.URL.includes('index.html')) {
+		buildCards(shuffle(products), 3, 'featured-products');
+		showSlide(slideIndex);
+		slideButtonListener();
+	} else if (document.URL.includes('products.html')) {
+		buildCards(products, products.length, 'cardContainer');
+		buttonEvents(products);
+	} else if ( document.URL.includes('about.html')) {
         submitButtonClick();
-
     }
 };
 
