@@ -83,7 +83,7 @@ const cart = [];
 
 const wishlist = [];
 
-let slideIndex = 1;
+let slideIndex = 0;
 
 const printToDom = (divId, textToPrint) => {
 	const selectedDiv = document.getElementById(divId);
@@ -232,7 +232,22 @@ const buildComment = () => {
 }
 }
 
+const slideButtonListener = () => {
+	document.getElementById('slide-right').addEventListener('click', function () {
+		showSlide((slideIndex += 1));
+	});
+	document.getElementById('slide-left').addEventListener('click', function () {
+		showSlide((slideIndex += -1));
+	});
+};
 
+const showSlide = (n) => {
+    const selectedDiv = document.getElementsByClassName('review-slide');
+	for (let i = 0; i < selectedDiv.length; i++) {
+        selectedDiv[i].style.display = 'none';
+    }
+    selectedDiv[Math.abs(n) % selectedDiv.length].style.display = 'block';
+};
 
 const init = () => {
 	if (document.URL.includes('index.html')) {
