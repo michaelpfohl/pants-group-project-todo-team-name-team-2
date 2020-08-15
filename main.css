@@ -78,3 +78,13 @@ body {
     background-color: white;
     border: 3px solid black;
 }
+
+#control-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#slide-right {
+    order: 1;
+}
