@@ -173,9 +173,9 @@ const filterProducts = (e) => {
 
 const searchProducts = (e) => {
     const searchedProducts = [];
-    let search = e.target.value;
+    let search = e.target.value.toLowerCase();
     for (let i = 0; i < products.length; i++) {
-        if (products[i].name.includes(search)){
+        if (products[i].name.toLowerCase().includes(search)){
             searchedProducts.push(products[i]);
         }
     }
