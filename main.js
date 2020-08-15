@@ -88,7 +88,7 @@ const buildCards = (arr, length, divId) => {
     let domString = '';
     for (let i = 0; i < length; i++){
         if (document.URL.includes('products.html')) {
-        domString += `<div class="card text-center" style="width: 331px; margin: 1%;">
+        domString += `<div id="product-${i}"class="card text-center" style="width: 331px; margin: 1%;">
                         <h5 class="card-title mt-2">${arr[i].name}</h5>
                         <img class="card-img-top" src="${arr[i].image}" alt="Card image cap">
                         <div class="card-body">
@@ -171,12 +171,23 @@ const filterProducts = (e) => {
     }
 }
 
+const searchProducts = () => {
+    let search = document.querySelector('#product-searchbar').value
+    for (let i = 0; i > products.length; i++) {
+        if (!products[i].name.includes(search)){
+            document.querySelector(`#product-${i}`).style.display = 'none';
+        }
+    }
+    buildCards(products, products.length, 'cardContainer');
+}
+
 const buttonEvents = (arr) => {
     for (let i = 0; i < arr.length; i ++){
         document.querySelector(`#add-to-cart-${[i]}`).addEventListener('click', addToCart);
         document.querySelector(`#add-to-wishlist-${[i]}`).addEventListener('click', addToWishlist)
     }
-    document.querySelector("#button-container").addEventListener('click', filterProducts)
+    document.querySelector('#button-container').addEventListener('click', filterProducts)
+    document.querySelector('#product-searchbar').addEventListener('input', searchProducts)
 }
 
 const init = () => {
