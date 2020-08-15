@@ -94,7 +94,7 @@ const buildCards = (arr, length, divId) => {
     let domString = '';
     for (let i = 0; i < length; i++){
         if (document.URL.includes('products.html')) {
-        domString += `<div id="product-${i}"class="card text-center" style="width: 331px; margin: 1%;">
+        domString += `<div id="product-${i}"class="card text-center product--card" style="width: 331px; margin: 1%;">
                         <h5 class="card-title mt-2">${arr[i].name}</h5>
                         <img class="card-img-top" src="${
 													arr[i].image
@@ -112,8 +112,8 @@ const buildCards = (arr, length, divId) => {
                             </div>
                         </div>
                     </div>`;
-		} else if (document.URL.includes('index.html')) {
-			domString += `<div class="card text-center" style="width: 30%; margin: 1%;">
+        } else if (document.URL.includes('index.html')) {
+            domString += `<div class="card text-center product--card" style="width: 30%; margin: 1%;">
                         <h5 class="card-title mt-2">${arr[i].name}</h5>
                         <img class="card-img-top" src="${arr[i].image}" alt="Card image cap">
                         <div class="card-body">
@@ -259,7 +259,6 @@ const init = () => {
 		buttonEvents(products);
 	} else if ( document.URL.includes('about.html')) {
         submitButtonClick();
-
     }
 };
 
