@@ -2,7 +2,7 @@
 
 const products = [
     {
-        name: 'Jodhpur 1',
+        name: 'Jodhpur Sleek 1',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
@@ -10,7 +10,7 @@ const products = [
         type: 'traditional'
     },
     {
-        name: 'Jodhpur 2',
+        name: 'Jodhpur Sleek 2',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
@@ -18,7 +18,7 @@ const products = [
         type: 'modern'
     },
     {
-        name: 'Jodhpur 3',
+        name: 'Jodhpur Stylish 3',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
@@ -26,7 +26,7 @@ const products = [
         type: 'experimental'
     },
     {
-        name: 'Jodhpur 4',
+        name: 'Jodhpur Sleek 4',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
@@ -34,7 +34,7 @@ const products = [
         type: 'traditional'
     },
     {
-        name: 'Jodhpur 5',
+        name: 'Jodhpur Stylish 5',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
@@ -42,7 +42,7 @@ const products = [
         type: 'experimental'
     },
     {
-        name: 'Jodhpur 6',
+        name: 'Jodhpur Cozy 6',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
@@ -50,7 +50,7 @@ const products = [
         type: 'experimental'
     },
     {
-        name: 'Jodhpur 7',
+        name: 'Jodhpur  Roomy 7',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
@@ -58,7 +58,7 @@ const products = [
         type: 'modern'
     },
     {
-        name: 'Jodhpur 8',
+        name: 'Jodhpur Roomy 8',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
@@ -66,7 +66,7 @@ const products = [
         type: 'modern'
     },
     {
-        name: 'Jodhpur 9',
+        name: 'Jodhpur Cozy 9',
         price: '$20',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: 'https://d2fzf9bbqh0om5.cloudfront.net/images/680583/main/pirate-dressing-archibald-jodhpur-pants-pants.jpg?1548933562',
@@ -92,7 +92,7 @@ const buildCards = (arr, length, divId) => {
     let domString = '';
     for (let i = 0; i < length; i++){
         if (document.URL.includes('products.html')) {
-        domString += `<div class="card text-center" style="width: 331px; margin: 1%;">
+        domString += `<div id="product-${i}"class="card text-center" style="width: 331px; margin: 1%;">
                         <h5 class="card-title mt-2">${arr[i].name}</h5>
                         <img class="card-img-top" src="${arr[i].image}" alt="Card image cap">
                         <div class="card-body">
@@ -175,12 +175,24 @@ const filterProducts = (e) => {
     }
 }
 
+const searchProducts = (e) => {
+    const searchedProducts = [];
+    let search = e.target.value.toLowerCase();
+    for (let i = 0; i < products.length; i++) {
+        if (products[i].name.toLowerCase().includes(search)){
+            searchedProducts.push(products[i]);
+        }
+    }
+    buildCards(searchedProducts, searchedProducts.length, 'cardContainer');
+}
+
 const buttonEvents = (arr) => {
     for (let i = 0; i < arr.length; i ++){
         document.querySelector(`#add-to-cart-${[i]}`).addEventListener('click', addToCart);
         document.querySelector(`#add-to-wishlist-${[i]}`).addEventListener('click', addToWishlist)
     }
-    document.querySelector("#button-container").addEventListener('click', filterProducts)
+    document.querySelector('#button-container').addEventListener('click', filterProducts)
+    document.querySelector('#product-searchbar').addEventListener('input', searchProducts)
 }
 
 const submitButtonClick = () => {
