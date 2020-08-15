@@ -40,6 +40,11 @@ body {
     background: #BC493B;
 }
 
+.btn-primary:focus {
+    background: #BC493B;
+}
+
+
 .nav--bar {
     background: #B5A0B0;
 }
