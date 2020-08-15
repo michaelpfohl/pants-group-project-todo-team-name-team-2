@@ -83,6 +83,8 @@ const cart = [];
 
 const wishlist = [];
 
+let slideIndex = 0;
+
 const printToDom = (divId, textToPrint) => {
 	const selectedDiv = document.getElementById(divId);
 	selectedDiv.innerHTML = textToPrint;
@@ -94,7 +96,9 @@ const buildCards = (arr, length, divId) => {
         if (document.URL.includes('products.html')) {
         domString += `<div id="product-${i}"class="card text-center" style="width: 331px; margin: 1%;">
                         <h5 class="card-title mt-2">${arr[i].name}</h5>
-                        <img class="card-img-top" src="${arr[i].image}" alt="Card image cap">
+                        <img class="card-img-top" src="${
+													arr[i].image
+												}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">${arr[i].price}</h5>
                             <h5> Sizes: </h5>
@@ -108,8 +112,8 @@ const buildCards = (arr, length, divId) => {
                             </div>
                         </div>
                     </div>`;
-        } else if (document.URL.includes('index.html')) {
-            domString += `<div class="card text-center" style="width: 30%; margin: 1%;">
+		} else if (document.URL.includes('index.html')) {
+			domString += `<div class="card text-center" style="width: 30%; margin: 1%;">
                         <h5 class="card-title mt-2">${arr[i].name}</h5>
                         <img class="card-img-top" src="${arr[i].image}" alt="Card image cap">
                         <div class="card-body">
@@ -117,13 +121,13 @@ const buildCards = (arr, length, divId) => {
                             <p class="card-text">${arr[i].description}</p>
                         </div>
                     </div>`;
-        }
+		}
 	}
 	printToDom(divId, domString);
 };
 
-const shuffle = arr => {
-    return arr.sort(() => Math.random() - 0.5);
+const shuffle = (arr) => {
+	return arr.sort(() => Math.random() - 0.5);
 };
 
 const sizeList = (p) => {
@@ -157,23 +161,23 @@ const addToWishlist = (e) => {
 };
 
 const filterProducts = (e) => {
-    const target = e.target.id;
-    const selectedProducts = [];
-    for (let i = 0; i < products.length; i++){
-        if(products[i].type === target){
-            selectedProducts.push(products[i]);
-        }
-    }
-    if (target === e.currentTarget.id){
-        return 
-    } else if (target === "all"){
-        buildCards(products, products.length, 'cardContainer');
-        buttonEvents(products);
-    } else {
-        buildCards(selectedProducts, selectedProducts.length, 'cardContainer');
-        buttonEvents(selectedProducts);
-    }
-}
+	const target = e.target.id;
+	const selectedProducts = [];
+	for (let i = 0; i < products.length; i++) {
+		if (products[i].type === target) {
+			selectedProducts.push(products[i]);
+		}
+	}
+	if (target === e.currentTarget.id) {
+		return;
+	} else if (target === 'all') {
+		buildCards(products, products.length, 'cardContainer');
+		buttonEvents(products);
+	} else {
+		buildCards(selectedProducts, selectedProducts.length, 'cardContainer');
+		buttonEvents(selectedProducts);
+	}
+};
 
 const searchProducts = (e) => {
     const searchedProducts = [];
@@ -228,15 +232,32 @@ const buildComment = () => {
 }
 }
 
+const slideButtonListener = () => {
+	document.getElementById('slide-right').addEventListener('click', function () {
+		showSlide((slideIndex += 1));
+	});
+	document.getElementById('slide-left').addEventListener('click', function () {
+		showSlide((slideIndex += -1));
+	});
+};
 
+const showSlide = (n) => {
+    const selectedDiv = document.getElementsByClassName('review-slide');
+	for (let i = 0; i < selectedDiv.length; i++) {
+        selectedDiv[i].style.display = 'none';
+    }
+    selectedDiv[Math.abs(n) % selectedDiv.length].style.display = 'block';
+};
 
 const init = () => {
-    if (document.URL.includes('index.html')) {
-        buildCards(shuffle(products), 3, 'featured-products')
-    } else if (document.URL.includes('products.html')) {
-        buildCards(products, products.length, 'cardContainer');
-        buttonEvents(products);
-    } else if ( document.URL.includes('about.html')) {
+	if (document.URL.includes('index.html')) {
+		buildCards(shuffle(products), 3, 'featured-products');
+		showSlide(slideIndex);
+		slideButtonListener();
+	} else if (document.URL.includes('products.html')) {
+		buildCards(products, products.length, 'cardContainer');
+		buttonEvents(products);
+	} else if ( document.URL.includes('about.html')) {
         submitButtonClick();
 
     }
