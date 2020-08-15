@@ -164,6 +164,16 @@ body {
     border: 3px solid #312C3C;
 }
 
+#control-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#slide-right {
+    order: 1;
+}
+
 .container-md {
     width: 500px;
     margin-left: 50em;
