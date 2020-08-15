@@ -75,7 +75,7 @@ const products = [
     }
 ];
 
-const submit = []
+const replies = [];
 
 const comments = [];
 
@@ -188,6 +188,12 @@ const submitButtonClick = () => {
      document.querySelector('#submit-button').addEventListener('click',buildComment);
 }
 
+const replyButtonClick = () => {
+    for (let i = 0; i < comments.length; i++){
+    document.querySelector(`#reply-button${i}`).addEventListener('click', replyToComment);
+}
+}
+
 const commentPush = () => {
     let comment = {}
     comment.name = document.querySelector('#nameInput').value
@@ -201,20 +207,63 @@ const buildComment = () => {
     for (let i = 0; i < comments.length; i ++) {
      domString +=  
  `<section>
+
     <h2>Comments</h2>
     <div class="media">
       <img src="https://placehold.it/64x64" alt="Media object image">
       <div class="media-body">
         <p><a href="mailto:example@domain.com">${comments[i].name}</a> (${comments[i].email})</p>
-        <p>${comments[i].text}</p>
-        <button type="button" class="btn btn-sm btn-primary">Reply</button>
+        <div>${comments[i].text}</div>
+        <div id="comment${i}"></div>
+        <a id="reply-button${i}" class="btn btn-sm btn-primary">Reply</a>
       </div>
       <hr>
-      </section>`;
+      </section>
+      <div id="reply${i}">
+      </div>
+      `;
 
       printToDom('submitForm', domString);
+      replyButtonClick();
 }
 }
+
+const commentBtnClick = (id) => {
+    document.querySelector(`#comment-button${id}`).addEventListener('click', () => {
+
+        // WHEN COMMENT BUTTON IS PRESSED... 
+
+        // 1. GRAB COMMENT INPUT VALUE
+        let inputText = document.querySelector(`#commentTextArea${id}`).value
+
+        // 2. CREATE A DOM ELEMENT 
+        let node = document.createElement("P"); 
+        let textnode = document.createTextNode(`${inputText}`);
+        node.appendChild(textnode);
+
+        // 3. APPEND DOM ELEMENT TO COMMENTS DIV
+        document.querySelector(`#comment${id}`).appendChild(node)
+
+        // 4. CLEAR INPUT VALUE
+        document.querySelector(`#commentTextArea${id}`).value = ''
+
+        // 5. REMOVE COMMENT IMPUT AND BUTTON
+        document.querySelector(`#reply${id}`).innerHTML = ''
+    })
+}
+
+const replyToComment = (e) => {
+    const target = e.target.id;
+    let domString = '';
+	for (let i = 0; i < comments.length; i++) {
+		if (target === `reply-button${i}`) {
+            domString +=`<textarea class="form-control" id="commentTextArea${i}" rows="1"></textarea>`
+            domString += `<a id="comment-button${i}" class="btn btn-sm btn-primary">Comment</a>`
+            printToDom(`reply${i}`,domString);
+            commentBtnClick(i)
+        }
+    }
+	}
 
 
 
