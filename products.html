@@ -37,7 +37,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div
-        class="collapse navbar-collapse m-0 d-block p-2 justify-content-around"
+        class="collapse navbar-collapse m-0 p-2 justify-content-around"
         id="navbarNavDropdown"
       >
         <ul class="navbar-nav d-flex justify-content-around w-100">
@@ -53,10 +53,10 @@
             <a class="nav-link" href="products.html">Products <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="cart-nav">Cart</a>
+            <a class="nav-link" id="cart-nav" href="">Cart</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="wishlist-nav">Wishlist</a>
+            <a class="nav-link" id="wishlist-nav" href="">Wishlist</a>
           </li>
         </ul>
       </div>
@@ -71,6 +71,14 @@
         <button id="experimental"type="button" class="btn btn-primary">Experimental</button>
     </div>
     <!-- Filter Buttons End -->
+
+    <!--Search Bar Start-->
+    <div id="search-container" class="container d-flex justify-content-center mx-auto my-4">
+      <h4 class="mr-2">Search:</h4>
+      <input id="product-searchbar" type="text" placeholder="Search by name">
+    </div>
+
+    <!--Search Bar End-->
 
     <!-- Card Start -->
     <div id="cardContainer"class="container d-flex flex-wrap justify-content-center mt-4 mb-4"></div>

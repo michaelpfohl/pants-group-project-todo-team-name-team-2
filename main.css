@@ -44,6 +44,7 @@ body {
 
 .tab-content p {
     margin-left: auto;
+    margin-right: 100px;
 }
 
 .col-4 {
@@ -60,6 +61,7 @@ body {
 .list-group {
     margin-left: 60px;
 }
+
 
 .main-img-container {
     position: relative;
@@ -87,4 +89,10 @@ body {
 
 #slide-right {
     order: 1;
+}
+
+.container-md {
+    width: 500px;
+    margin-left: 50em;
+    margin-bottom: 100px;
 }
