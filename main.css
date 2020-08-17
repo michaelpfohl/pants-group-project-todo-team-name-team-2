@@ -77,6 +77,15 @@ body {
     list-style: none;
    }
 
+.containerWishlistPage {
+    width: 1000px;
+    color: #312C3C;
+}
+
+.containerCartWishlistPage {
+    color: #312C3C;
+
+}
 
 /* #containerCartWishlistPage {
     margin: auto;

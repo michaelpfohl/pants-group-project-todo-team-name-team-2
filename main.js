@@ -195,20 +195,18 @@ const buildCartProducts = () => {
     
     for (let j = 0; j < cart.length; j++) {
     domString += `
-    <div class="card mb-3 d-flex" style="max-width: 540px; id="inCartProducts"">
+    <div class="card mb-5 ml-5 d-flex" style="max-width: 600px;" id="inCartProducts"">
                 <div class="row no-gutters p-3 my-2">
                     <div class="col" id="containerImage" style="height: 100%;">
                         <img src="${cart[j].image}" class="card-img">
                     </div>
-                    <div class="col-sm">
-                        <div class="card-body">
+                    <div class="col-4">
                             <h5 class="card-title">${cart[j].name}</h5>
                             <p class="card-text">Size: ${cart[j].selectedSize}</p>
                             <p class="">Price: $${cart[j].price}</p>
-                        </div>
                     </div>
                         <div class="col align-self-end text-right">
-                            <button type="button" class="btn btn-danger" id="btnRemoveFromCart-${[j]}";>Remove</button>
+                            <button type="button" class="btn btn-primary" id="btnRemoveFromCart-${[j]}";>Remove</button>
                         </div>
                 </div>
             </div>`
@@ -222,8 +220,8 @@ const buildOrderSummary = () => {
 
     domString = `<div class="" id="cardOrderSummary">
                     <div class="card mb-5" style="width: 300px;">
-                        <h5 class="card-header text-center" style="background-color: #C7B8B4;">Order Summary</h5>
-                        <div class="card-body">
+                        <h5 class="text-center py-3" style="background-color: #C7B8B4; color: #F5F3F1; font-weight: bolder;">Order Summary</h5>
+                        <div class="card-body" style="background-color: #F5F3F1;">
                             <div class="d-flex justify-content-center mx-4 mb-4" id="gridContainer">
                                 <div class="col-sm" id="checkoutTitles">
                                     <li>Subtotal</li>
@@ -250,23 +248,22 @@ const buildWishlist = () => {
     let domString = '';
 
     for (let j = 0; j < wishlist.length; j++) {
-        domString += `
-        <div class="" id="cardWishlist">
-                    <div class="card d-flex p-3 my-2" style="max-width: 350px;">
+        domString += `<div id="cardWishlist">
+                    <div class="card d-flex p-3 my-2 mb-5" style="max-width: 750px;">
                     <div class="row no-gutters">
                         <div class="col" id="containerImage" style="height: 100%;">
                             <img src="${wishlist[j].image}" class="card-img">
                         </div>
                         <div class="col-sm">
                             <div class="">
-                                <h5 class="">${wishlist[j].name}</h5>
+                                <h5 class="card-title">${wishlist[j].name}</h5>
                                 <p class="card-text">Size: ${wishlist[j].selectedSize}</p>
                                 <p class="">Price: ${wishlist[j].price}</p>
                             </div>
                         </div> 
-                            <div class="col text-right" id="wishlistBtns">
-                                <button type="button" class="btn btn-danger btn-sm" id="btnRemoveFromWishlist-${[j]}">Remove</button>
-                                <button type="button" class="btn btn-primary btn-sm mt-5" id="btnAddToCartFromWishlist-${[j]}">Add to Cart</button>
+                            <div class="col text-right align-self-end" id="wishlistBtns">
+                                <button type="button" class="btn btn-primary btn-sm" id="btnRemoveFromWishlist-${[j]}">Remove</button>
+                                <button type="button" class="btn btn-primary btn-sm ml-2" id="btnAddToCartFromWishlist-${[j]}">Add to Cart</button>
                             </div>
                     </div>
                     </div>
@@ -278,21 +275,21 @@ const buildWishlist = () => {
 }
 
 const showCartPage = (e) => {
-    for (let j = 0; j < products.length; j++) {
-        document.getElementById("cardContainer").style.visibility = "hidden";
-        document.getElementById("containerWishlistPage").style.display = "none";
-        document.getElementById("containerCartProducts").style.display = "block";
-        document.getElementById("containerOrderSummary").style.display = "block";
-    }
-    // for (let j = 0; j < products.length; j++) {
-    //     document.getElementById("containerWishlistPage").style.visibility = "hidden";
-    // }
     if (cart.length === 0) {
         noItemsInCart();
     } else {
-        printToDom('cardContainer', buildCartProducts());
+        printToDom('containerCartProducts', buildCartProducts());
         printToDom('containerOrderSummary', buildOrderSummary());
-    }
+    }    
+    document.getElementById("cardContainer").style.visibility = "hidden";
+    document.getElementById("containerWishlistPage").style.display = "none";
+    document.getElementById("button-container").style.visibility = "hidden";
+    document.getElementById("search-container").style.visibility = "hidden";
+    document.getElementById("containerCartProducts").style.display = "block";
+    document.getElementById("containerOrderSummary").style.display = "block";
+    // for (let j = 0; j < products.length; j++) {
+    //     document.getElementById("containerWishlistPage").style.visibility = "hidden";
+    // }
     // buttonEvents();
     // if (e.target.id === "cart-nav") {
     //     document.getElementById("cart-nav").classList.add("active");
@@ -301,12 +298,12 @@ const showCartPage = (e) => {
 }
 
 const showWishlistPage = (e) => {
-    for (let j = 0; j < products.length; j++) {
     document.getElementById("cardContainer").style.visibility = "hidden";
     document.getElementById("containerCartProducts").style.display = "none";
+    document.getElementById("button-container").style.visibility = "hidden";
+    document.getElementById("search-container").style.visibility = "hidden";
     document.getElementById("containerOrderSummary").style.display = "none";
     document.getElementById("containerWishlistPage").style.display = "block";
-    }
 
     // for (let k = 0; k < products.length; k++) {
     //     document.getElementById("containerCartWishlistPage").style.visibility = "hidden";
@@ -350,7 +347,7 @@ const removeFromCart = (e) => {
             cart.splice(target,1);
         }
     }
-    printToDom('containerCartProducts', buildCartProducts());
+    printToDom('containerCartWishlistPage', buildCartProducts());
     printToDom('cart-nav', `Cart: ${wishlist.length}`);
     buttonEvents(cart);
     noItemsInCart();
@@ -384,7 +381,7 @@ const removeFromWishlist = (e) => {
 const noItemsInWishlist = () => {
     if (wishlist.length === 0) {
         printToDom('wishlist-nav', `Wishlist`);
-        printToDom('containerNoItemsInWishlist', buildNoItemsInWishlist());
+        printToDom('containerWishlistPage', buildNoItemsInWishlist());
     }
 }
 
