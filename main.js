@@ -470,16 +470,16 @@ const buildComment = () => {
     domString += `<section>
     <h2>Comments</h2>
     <div class="media">
-      <img src="https://placehold.it/64x64" alt="Media object image">
+      <img src="https://twirpz.files.wordpress.com/2015/06/twitter-avi-gender-balanced-figure.png?w=640" alt="Media object image" class="media-object-img">
       <div class="media-body">
-        <p><a href="mailto:example@domain.com">${comments[i].name}</a> (${comments[i].email})</p>
-        <div>${comments[i].text}</div>
-        <div id="comment${i}"></div>
+        <p>${comments[i].name} <a href="mailto:example@domain.com"> (${comments[i].email})</a></p>
+        <div class="comment-text">${comments[i].text} </div>
+        <div id="comment${i}" class="comment-bubble"></div>
         <a id="reply-button${i}" class="btn btn-sm btn-primary">Reply</a>
       </div>
       <hr>
       </section>
-      <div id="reply${i}">
+      <div id="reply${i}" class="reply-bubble">
       </div>
       `;
 
@@ -508,10 +508,10 @@ const commentBtnClick = (id) => {
       // 4. CLEAR INPUT VALUE
       document.querySelector(`#commentTextArea${id}`).value = "";
 
-      // 5. REMOVE COMMENT IMPUT AND BUTTON
-      document.querySelector(`#reply${id}`).innerHTML = "";
-    });
-};
+        // 5. REMOVE COMMENT INPUT AND BUTTON
+        document.querySelector(`#reply${id}`).innerHTML = ''
+    })
+}
 
 const replyToComment = (e) => {
   const target = e.target.id;
