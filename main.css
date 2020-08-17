@@ -182,6 +182,11 @@ body {
     order: 1;
 }
 
+.slide-button {
+    height: 100px;
+    color: #B5A0B0;
+}
+
 .container-md {
     width: 500px;
     margin-left: 50em;
