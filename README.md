@@ -1,4 +1,4 @@
-### Jodhpur Pants
+# Jodhpur Pants
 This is an ecommerce site built to showcase your new favorite pants, Jodhpurs!
 
 ## Contributors
@@ -7,7 +7,7 @@ This is an ecommerce site built to showcase your new favorite pants, Jodhpurs!
 - [Jonathon Joyner](https://github.com/Jonathon22)
 - [Michael Pfohl](https://github.com/michaelpfohl)
 
-### Pages
+# Pages
 - Home
 - About
 - Products
