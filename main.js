@@ -132,7 +132,8 @@ const buildCartProducts = () => {
     let domString = '';
     
     for (let j = 0; j < cart.length; j++) {
-    domString += `<div class="card mb-3 d-flex" style="max-width: 540px;">
+    domString += `
+    <div class="card mb-3 d-flex" style="max-width: 540px; id="inCartProducts"">
                 <div class="row no-gutters p-3 my-2">
                     <div class="col" id="containerImage" style="height: 100%;">
                         <img src="${cart[j].image}" class="card-img">
@@ -184,7 +185,7 @@ const buildOrderSummary = () => {
 }
 
 const buildWishlist = () => {
-    let domString = '<h5 class="card-header text-center">Wishlist</h5>';
+    let domString = '';
 
     for (let j = 0; j < wishlist.length; j++) {
         domString += `
@@ -214,22 +215,43 @@ const buildWishlist = () => {
   return domString
 }
 
-const showCartPage = () => {
-    printToDom('cardContainer', buildCartProducts());
-    printToDom('containerOrderSummary', buildOrderSummary());
-    buttonEvents(cart);
-    noItemsInCart();
+const showCartPage = (e) => {
+    for (let j = 0; j < products.length; j++) {
+        document.getElementById("cardContainer").style.visibility = "hidden";
+        document.getElementById("containerWishlistPage").style.display = "none";
+        document.getElementById("containerCartProducts").style.display = "block";
+        document.getElementById("containerOrderSummary").style.display = "block";
+    }
+    // for (let j = 0; j < products.length; j++) {
+    //     document.getElementById("containerWishlistPage").style.visibility = "hidden";
+    // }
+    if (cart.length === 0) {
+        noItemsInCart();
+    } else {
+        printToDom('containerCartProducts', buildCartProducts());
+        printToDom('containerOrderSummary', buildOrderSummary());
+    }
     // if (e.target.id === "cart-nav") {
     //     document.getElementById("cart-nav").classList.add("active");
     // }
     // TO DO ADD ACTIVE ON NAV
 }
 
-const showWishlistPage = () => {
-    printToDom('cardContainer', buildWishlist());
+const showWishlistPage = (e) => {
+    for (let j = 0; j < products.length; j++) {
+    document.getElementById("cardContainer").style.visibility = "hidden";
+    document.getElementById("containerCartProducts").style.display = "none";
+    document.getElementById("containerOrderSummary").style.display = "none";
+    document.getElementById("containerWishlistPage").style.display = "block";
+    }
+
+    // for (let k = 0; k < products.length; k++) {
+    //     document.getElementById("containerCartWishlistPage").style.visibility = "hidden";
+    //     }
+
+    printToDom('containerWishlistPage', buildWishlist());
     buttonEvents(wishlist);
     noItemsInWishlist();
-
 }
 
 const buildNoItemsInWishlist = () => {
@@ -239,7 +261,7 @@ const buildNoItemsInWishlist = () => {
                     <h4 class="alert-heading">There are no items in your Wishlist!</h4>
                     <hr>
                     <p class="mb-0">Head over to the Products page to start adding to your Wishlist!</p>
-  </div>`
+                </div>`
     
     return domString;
 
@@ -265,32 +287,11 @@ const removeFromCart = (e) => {
             cart.splice(target,1);
         }
     }
-    printToDom('cardContainer', buildCartProducts());
+    printToDom('containerCartProducts', buildCartProducts());
     printToDom('cart-nav', `Cart: ${wishlist.length}`);
     buttonEvents(cart);
     noItemsInCart();
 }
-
-// const removeFromCart = (e) => {
-//     const target = e.target.id;
-//     for (let i = 0; i < cart.length; i++){
-//         if (target === `btnRemoveFromCart-${[i]}`){
-//             cart.splice(target,1);
-//         }
-//     }
-//     printToDom('cardContainer', buildCartProducts());
-//     printToDom('cart-nav', `Cart: ${cart.length}`);
-//     buttonEvents(products);
-// } 
-
-//     const target = e.target.id;
-//     if (e.target.id === "btnRemoveFromCart") {
-//         cart.splice(e.target.id, 1);
-//     }
-//     $("button").click(function(){
-//         $("").remove();
-//       });
-//   }
 
 const wishlistAddToCart = (e) => {
     const target = e.target.id;
@@ -311,7 +312,7 @@ const removeFromWishlist = (e) => {
             wishlist.splice(target,1);
         }
     }
-    printToDom('cardContainer', buildWishlist());
+    printToDom('containerWishlistPage', buildWishlist());
     printToDom('wishlist-nav', `Wishlist: ${wishlist.length}`);
     buttonEvents(wishlist);
     noItemsInWishlist();
@@ -320,14 +321,14 @@ const removeFromWishlist = (e) => {
 const noItemsInWishlist = () => {
     if (wishlist.length === 0) {
         printToDom('wishlist-nav', `Wishlist`);
-        printToDom('cardContainer', buildNoItemsInWishlist());
+        printToDom('containerNoItemsInWishlist', buildNoItemsInWishlist());
     }
 }
 
 const noItemsInCart = () => {
     if (cart.length === 0) {
-        printToDom('cart-nav', `Cart:`);
-        printToDom('cardContainer', buildNoItemsInCart());
+        printToDom('cart-nav', `Cart`);
+        printToDom('containerNoItemsInCart', buildNoItemsInCart());
     }
 }
 

@@ -11,6 +11,12 @@ body {
     list-style: none;
    }
 
+
+#containerCartWishlistPage {
+    margin: auto;
+
+}
+
 #btnRemoveFromWishlist {
     font-size: 12px;
     margin-bottom: 35px;
