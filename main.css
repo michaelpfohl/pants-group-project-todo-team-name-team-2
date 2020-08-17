@@ -44,7 +44,6 @@ body {
     background: #BC493B;
 }
 
-
 .nav--bar {
     background: #B5A0B0;
 }
@@ -73,10 +72,6 @@ body {
     margin: auto;
 }
 
-#gridContainer {
-    list-style: none;
-   }
-
 .containerWishlistPage {
     width: 1000px;
     color: #312C3C;
@@ -84,19 +79,7 @@ body {
 
 .containerCartWishlistPage {
     color: #312C3C;
-
 }
-
-/* #containerCartWishlistPage {
-    margin: auto;
-}
-#btnRemoveFromWishlist {
-    font-size: 12px;
-    margin-bottom: 35px;
-}
-#btnAddToCart {
-    font-size: 12px;
-} */
 
 .footer--container {
     position: fixed;
@@ -142,7 +125,7 @@ body {
     margin-right: 100px;
 }
 
-/* .col-4 {
+.col-4 {
     flex-basis: 0;
     flex-grow: 1;
     max-width: 100%;
@@ -151,7 +134,7 @@ body {
     margin: 10px;
     width: 200px;
     box-sizing: border-box;
-} */
+}
 
 .list-group {
     margin-left: 60px;

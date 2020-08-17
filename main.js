@@ -109,14 +109,14 @@ const printToDom = (divId, textToPrint) => {
 };
 
 const buildCards = (arr, length, divId) => {
-  let domString = "";
-  for (let i = 0; i < length; i++) {
-    if (document.URL.includes("products.html")) {
-      domString += `<div id="product-${i}"class="card text-center product--card" style="width: 331px; margin: 1%;">
+    let domString = '';
+    for (let i = 0; i < length; i++){
+        if (document.URL.includes('products.html')) {
+        domString += `<div id="product-${i}"class="card text-center product--card" style="width: 331px; margin: 1%;">
                         <h5 class="card-title mt-2">${arr[i].name}</h5>
                         <img class="card-img-top" src="${
-                          arr[i].image
-                        }" alt="Card image cap">
+													arr[i].image
+												}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">${arr[i].price}</h5>
                             <h5> Sizes: </h5>
@@ -130,8 +130,8 @@ const buildCards = (arr, length, divId) => {
                             </div>
                         </div>
                     </div>`;
-    } else if (document.URL.includes("index.html")) {
-      domString += `<div class="card text-center product--card" style="width: 30%; margin: 1%;">
+        } else if (document.URL.includes('index.html')) {
+            domString += `<div class="card text-center product--card" style="width: 30%; margin: 1%;">
                         <h5 class="card-title mt-2">${arr[i].name}</h5>
                         <img class="card-img-top" src="${arr[i].image}" alt="Card image cap">
                         <div class="card-body">
@@ -139,9 +139,9 @@ const buildCards = (arr, length, divId) => {
                             <p class="card-text">${arr[i].description}</p>
                         </div>
                     </div>`;
-    }
-  }
-  printToDom(divId, domString);
+		}
+	}
+	printToDom(divId, domString);
 };
 
 const shuffle = (arr) => {
@@ -423,56 +423,35 @@ const orderSummaryTotal = () => {
 
 const buttonEvents = (arr) => {
   document.querySelector("#cart-nav").addEventListener("click", showCartPage);
-  document
-    .querySelector("#wishlist-nav")
-    .addEventListener("click", showWishlistPage);
+  document.querySelector("#wishlist-nav").addEventListener("click", showWishlistPage);
 
   for (let i = 0; i < arr.length; i++) {
-    document
-      .querySelector(`#add-to-cart-${[i]}`)
-      .addEventListener("click", addToCart);
-    document
-      .querySelector(`#add-to-wishlist-${[i]}`)
-      .addEventListener("click", addToWishlist);
+    document.querySelector(`#add-to-cart-${[i]}`).addEventListener("click", addToCart);
+    document.querySelector(`#add-to-wishlist-${[i]}`).addEventListener("click", addToWishlist);
   }
-  document
-    .querySelector("#button-container")
-    .addEventListener("click", filterProducts);
-  document
-    .querySelector("#product-searchbar")
-    .addEventListener("input", searchProducts);
+  document.querySelector("#button-container").addEventListener("click", filterProducts);
+  document.querySelector("#product-searchbar").addEventListener("input", searchProducts);
 
   if (arr === wishlist) {
     for (let i = 0; i < arr.length; i++) {
-      document
-        .querySelector(`#btnAddToCartFromWishlist-${[i]}`)
-        .addEventListener("click", wishlistAddToCart);
-      document
-        .querySelector(`#btnRemoveFromWishlist-${[i]}`)
-        .addEventListener("click", removeFromWishlist);
+      document.querySelector(`#btnAddToCartFromWishlist-${[i]}`).addEventListener("click", wishlistAddToCart);
+      document.querySelector(`#btnRemoveFromWishlist-${[i]}`).addEventListener("click", removeFromWishlist);
     }
   } else if (arr === cart) {
     for (let i = 0; i < arr.length; i++) {
-      document
-        .querySelector(`#btnRemoveFromCart-${[i]}`)
-        .addEventListener("click", removeFromCart);
+      document.querySelector(`#btnRemoveFromCart-${[i]}`).addEventListener("click", removeFromCart);
     }
   }
 };
 
 const submitButtonClick = () => {
-  document
-    .querySelector("#submit-button")
-    .addEventListener("click", commentPush);
-  document
-    .querySelector("#submit-button")
-    .addEventListener("click", buildComment);
+  document.querySelector("#submit-button").addEventListener("click", commentPush);
+  document.querySelector("#submit-button").addEventListener("click", buildComment);
 };
 
 const replyButtonClick = () => {
   for (let i = 0; i < comments.length; i++) {
-    document
-      .querySelector(`#reply-button${i}`)
+    document.querySelector(`#reply-button${i}`)
       .addEventListener("click", replyToComment);
   }
 };
@@ -575,8 +554,6 @@ const init = () => {
   } else if (document.URL.includes("about.html")) {
     submitButtonClick();
   }
-  buildCards(products, products.length, "cardContainer");
-  buttonEvents(products);
 };
 
 init();
