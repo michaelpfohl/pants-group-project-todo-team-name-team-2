@@ -290,9 +290,10 @@ const showCartPage = (e) => {
     if (cart.length === 0) {
         noItemsInCart();
     } else {
-        printToDom('containerCartProducts', buildCartProducts());
+        printToDom('cardContainer', buildCartProducts());
         printToDom('containerOrderSummary', buildOrderSummary());
     }
+    // buttonEvents();
     // if (e.target.id === "cart-nav") {
     //     document.getElementById("cart-nav").classList.add("active");
     // }
@@ -319,7 +320,7 @@ const showWishlistPage = (e) => {
 const buildNoItemsInWishlist = () => {
     let domString = '';
 
-    domString = `<div class="alert alert-success text-center" role="alert">
+    domString = `<div class="alert text-center" role="alert" style="background-color: #AD96A7;">
                     <h4 class="alert-heading">There are no items in your Wishlist!</h4>
                     <hr>
                     <p class="mb-0">Head over to the Products page to start adding to your Wishlist!</p>
@@ -332,7 +333,7 @@ const buildNoItemsInWishlist = () => {
 const buildNoItemsInCart = () => {
     let domString = '';
 
-    domString = `<div class="alert alert-success text-center" role="alert">
+    domString = `<div class="alert text-center" role="alert" style="background-color: #AD96A7;">
                     <h4 class="alert-heading">There are no items in your Cart!</h4>
                     <hr>
                     <p class="mb-0">Head over to the Products page to start adding to your Cart!</p>
@@ -394,19 +395,6 @@ const noItemsInCart = () => {
     }
 }
 
-
-    // const target = e.target.id;
-    // if (e.target.id === "btnRemoveFromCart") {
-    //     cart.splice(e.target.id, 1);
-    // }
-    // const ctype = e.target.type;
-    // const target = e.target.id;
-
-    // if (ctype === 'button') {
-    //     products.splice(target, 1);
-
-    //     buildWishlist(products[i]);
-
     let tax = 0;
     let subtotal = 0;
   
@@ -434,23 +422,24 @@ const noItemsInCart = () => {
 const buttonEvents = (arr) => {
     document.querySelector("#cart-nav").addEventListener('click', showCartPage);
     document.querySelector("#wishlist-nav").addEventListener('click', showWishlistPage);
-    if (arr === products) {
-const buttonEvents = (arr) => {
-    for (let i = 0; i < arr.length; i ++){
+
+    for (let i = 0; i < arr.length; i ++) {
         document.querySelector(`#add-to-cart-${[i]}`).addEventListener('click', addToCart);
         document.querySelector(`#add-to-wishlist-${[i]}`).addEventListener('click', addToWishlist);
-    }
-} else if (arr === wishlist) {
-    for (let i = 0; i < arr.length; i ++){
+    } 
+    document.querySelector('#button-container').addEventListener('click', filterProducts)
+    document.querySelector('#product-searchbar').addEventListener('input', searchProducts)
+
+    if (arr === wishlist) {
+    for (let i = 0; i < arr.length; i ++) {
         document.querySelector(`#btnAddToCartFromWishlist-${[i]}`).addEventListener('click', wishlistAddToCart);
         document.querySelector(`#btnRemoveFromWishlist-${[i]}`).addEventListener('click', removeFromWishlist);
     }
-} else if (arr === cart) {
+    } else if (arr === cart) {
     for (let i = 0; i < arr.length; i ++) {
         document.querySelector(`#btnRemoveFromCart-${[i]}`).addEventListener('click', removeFromCart);
     }
-    document.querySelector('#button-container').addEventListener('click', filterProducts)
-    document.querySelector('#product-searchbar').addEventListener('input', searchProducts)
+    }
 }
 
 const submitButtonClick = () => {
@@ -556,18 +545,19 @@ const showSlide = (n) => {
 };
 
 const init = () => {
-    buildCards();
-    buttonEvents(products);
 	if (document.URL.includes('index.html')) {
 		buildCards(shuffle(products), 3, 'featured-products');
 		showSlide(slideIndex);
 		slideButtonListener();
-	} else if (document.URL.includes('products.html')) {
-		buildCards(products, products.length, 'cardContainer');
-		buttonEvents(products);
+	// } else if (document.URL.includes('products.html')) {
+	// 	buildCards(products, products.length, 'cardContainer');
+	// 	buttonEvents(products);
 	} else if ( document.URL.includes('about.html')) {
         submitButtonClick();
     }
+    buildCards(products, products.length, 'cardContainer');
+	buttonEvents(products);
 };
+
 
 init();

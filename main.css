@@ -73,16 +73,12 @@ body {
     margin: auto;
 }
 
-#headerWishlist {
-    max-width: 300px;
-}
-
 #gridContainer {
     list-style: none;
    }
 
 
-#containerCartWishlistPage {
+/* #containerCartWishlistPage {
     margin: auto;
 
 }
@@ -94,7 +90,7 @@ body {
 
 #btnAddToCart {
     font-size: 12px;
-}
+} */
 
 .footer--container {
     position: fixed;
@@ -140,7 +136,7 @@ body {
     margin-right: 100px;
 }
 
-.col-4 {
+/* .col-4 {
     flex-basis: 0;
     flex-grow: 1;
     max-width: 100%;
@@ -149,7 +145,7 @@ body {
     margin: 10px;
     width: 200px;
     box-sizing: border-box;
-}
+} */
 
 .list-group {
     margin-left: 60px;
