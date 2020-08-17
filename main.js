@@ -240,12 +240,12 @@ const buildOrderSummary = () => {
                         <h5 class="text-center py-3" style="background-color: #C7B8B4; color: #F5F3F1; font-weight: bolder;">Order Summary</h5>
                         <div class="card-body" style="background-color: #F5F3F1;">
                             <div class="d-flex justify-content-center mx-4 mb-4" id="gridContainer">
-                                <div class="col-sm" id="checkoutTitles">
+                                <div class="col-sm" id="checkoutTitles" style="list-style: none;">
                                     <li>Subtotal</li>
                                     <li>Tax</li>
                                     <li><strong>Total</strong></li>
                                 </div>
-                                <div class="col-sm text-right" id="checkoutTotals" style>
+                                <div class="col-sm text-right" id="checkoutTotals" style="list-style: none;">
                                     <li id="subtotal">$${orderSummarySubtotal()}</li>
                                     <li id="tax">$${calculateSalesTax()}</li>
                                     <li id="estimatedTotal"><strong>$${orderSummaryTotal()}</strong></li>
