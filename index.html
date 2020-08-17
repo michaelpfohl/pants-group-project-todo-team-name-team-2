@@ -4,6 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Jodhpur Pants</title>
+		<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;400;700&display=swap" rel="stylesheet">
 		<link
 			rel="stylesheet"
 			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -14,16 +15,15 @@
 	</head>
 	<body>
 		<!-- Navbar Start -->
-		<div class="jumbotron jumbotron-fluid m-0">
+		<div class="jumbotron jumbotron-fluid m-0 jumbotron--banner">
 			<div class="container">
-				<h1 class="display-4">Fluid jumbotron</h1>
-				<p class="lead">
-					This is a modified jumbotron that occupies the entire horizontal space
-					of its parent.
-				</p>
+			  <h1 class="display-4 d-flex justify-content-center jumbotron--header">Jodhpur Pants</h1>
+			  <p class="lead d-flex justify-content-center jumbotron--details">
+				CLASSIC · STYLISH · JODHPURS
+			  </p>
 			</div>
-		</div>
-		<nav class="m-0 navbar navbar-expand-lg navbar-light bg-light sticky-top">
+		  </div>
+		<nav class="m-0 navbar navbar-expand-lg navbar-light nav--bar sticky-top">
 			<a class="navbar-brand" href="#"></a>
 			<button
 				class="navbar-toggler"
@@ -37,7 +37,7 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div
-				class="collapse navbar-collapse m-0 d-block p-2 justify-content-around"
+				class="collapse navbar-collapse m-0 p-2 justify-content-around"
 				id="navbarNavDropdown"
 			>
 				<ul class="navbar-nav d-flex justify-content-around w-100">
@@ -53,11 +53,11 @@
 						<a class="nav-link" href="products.html">Products</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" id="cart-nav">Cart</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Wishlist</a>
-                    </li>
+						<a class="nav-link" id="cart-nav" href="">Cart</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="wishlist-nav" href="">Wishlist</a>
+					</li>
 				</ul>
 			</div>
 		</nav>
@@ -113,6 +113,50 @@
 			</div>
 		</div>
 		<!-- Feature Cards End -->
+		<!-- Featured Products Start -->
+		<div class="mb-5">
+			<h1 class="text-center">Featured Products</h1>
+			<div class="d-flex" id="featured-products"></div>
+		</div>
+		<!-- Featured Products End -->
+		<!-- Reviews Start -->
+		<div class="mb-5">
+			<h1 class="text-center">Reviews</h1>
+			<div id="control-container">
+				<button class="slide-button" id="slide-left">&#10094;</button>
+				<button class="slide-button" id="slide-right">&#10095;</button>
+				<div role="list" id="slide-container">
+					<iframe
+						class="review-slide"
+						width="560"
+						height="315"
+						src="https://www.youtube.com/embed/Ke2zI5euA_8"
+						frameborder="0"
+						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen
+					></iframe>
+					<iframe
+						class="review-slide"
+						width="560"
+						height="315"
+						src="https://www.youtube.com/embed/csw7s0E6hT4"
+						frameborder="0"
+						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen
+					></iframe>
+					<iframe
+						class="review-slide"
+						width="560"
+						height="315"
+						src="https://www.youtube.com/embed/VQzQG3PiSNw"
+						frameborder="0"
+						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen
+					></iframe>
+				</div>
+			</div>
+		</div>
+		<!-- Reviews End -->
 		<!-- Footer Start -->
 		<div class="text-right footer--container">
 			<p class="mr-2 footer--content">

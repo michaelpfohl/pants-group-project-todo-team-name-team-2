@@ -1,6 +1,76 @@
 body {
-    background: lavender;
-   
+    background: #312C3C;
+    font-family: 'Raleway', serif;
+    color: #F6F5F3;
+}
+
+.jumbotron--banner {
+    /* background-image:
+    radial-gradient(circle at 100% 150%, #312C3C 24%, #B5A0B0 24%, #B5A0B0 28%, #312C3C 28%, #312C3C 36%, #B5A0B0 36%, #B5A0B0 40%, transparent 40%, transparent),
+    radial-gradient(circle at 0    150%, #312C3C 24%, #B5A0B0 24%, #B5A0B0 28%, #312C3C 28%, #312C3C 36%, #B5A0B0 36%, #B5A0B0 40%, transparent 40%, transparent),
+    radial-gradient(circle at 50%  100%, #B5A0B0 10%, #312C3C 10%, #312C3C 23%, #B5A0B0 23%, #B5A0B0 30%, #312C3C 30%, #312C3C 43%, #B5A0B0 43%, #B5A0B0 50%, #312C3C 50%, #312C3C 63%, #B5A0B0 63%, #B5A0B0 71%, transparent 71%, transparent),
+    radial-gradient(circle at 100% 50%, #B5A0B0 5%, #312C3C 5%, #312C3C 15%, #B5A0B0 15%, #B5A0B0 20%, #312C3C 20%, #312C3C 29%, #B5A0B0 29%, #B5A0B0 34%, #312C3C 34%, #312C3C 44%, #B5A0B0 44%, #B5A0B0 49%, transparent 49%, transparent),
+    radial-gradient(circle at 0    50%, #B5A0B0 5%, #312C3C 5%, #312C3C 15%, #B5A0B0 15%, #B5A0B0 20%, #312C3C 20%, #312C3C 29%, #B5A0B0 29%, #B5A0B0 34%, #312C3C 34%, #312C3C 44%, #B5A0B0 44%, #B5A0B0 49%, transparent 49%, transparent); */
+    background-color:#B5A0B0;
+    background-image:
+    radial-gradient(#ccb4c6 9px, transparent 10px),
+    repeating-radial-gradient(#ccb4c6 0, #ccb4c6 4px, transparent 5px, transparent 20px, #ccb4c6 21px, #ccb4c6 25px, transparent 26px, transparent 50px);
+    background-size: 30px 30px, 90px 90px;
+    background-position: 0 0;
+}
+
+.jumbotron--header {
+    font-weight: bold;
+    font-size: 100px;
+    -webkit-text-stroke: 2px #312C3C;
+}
+
+.jumbotron--details {
+    color: #312C3C;
+    font-size: 30px;
+    margin: 0;
+}
+
+.btn-primary {
+    background: #B38767;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #BC493B;
+}
+
+.btn-primary:focus {
+    background: #BC493B;
+}
+
+
+.nav--bar {
+    background: #B5A0B0;
+}
+
+.card-body {
+    background: #B5A0B0;
+}
+
+.product--card {
+    background: #B5A0B0;
+}
+
+.card-title {
+    font-size: 30px;
+}
+
+.search--bar {
+    background: #B38767;
+    justify-content: space-between;
+    width: 300px;
+    height: 40px;    
+    border: 2px solid #B38767;
+}
+
+.search--header {
+    margin: auto;
 }
 
 #headerWishlist {
@@ -31,8 +101,8 @@ body {
     left: 0;
     bottom: 0;
     width: 100%;
-    background: gray;
-    color: white;
+    background: #B5A0B0;
+    color: #312C3C;
     height: 30px;
     text-align: center;
 }
@@ -44,10 +114,11 @@ body {
 }
 
 .footer--content a {
-    color: white;
+    color: #312C3C;
 }
+
 .footer--content a:hover {
-    color: violet;
+    color: #BC493B;
 }
 
 .tab-content h1 {
@@ -62,11 +133,11 @@ body {
     justify-content: space-around;
     padding: 50px;
     margin-left: 0;
-    /* margin-left: 0; */
 }
 
 .tab-content p {
     margin-left: auto;
+    margin-right: 100px;
 }
 
 .col-4 {
@@ -84,6 +155,20 @@ body {
     margin-left: 60px;
 }
 
+.list-group-item {
+    background: #B5A0B0;
+}
+
+.list-group-item.active {
+    background: #B38767;
+    border: none;
+}
+
+.list-group-item:hover {
+    background: #B38767;
+}
+
+
 .main-img-container {
     position: relative;
     text-align: center;
@@ -98,6 +183,22 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, 0);
-    background-color: white;
-    border: 3px solid black;
+    background-color: #B5A0B0;
+    border: 3px solid #312C3C;
+}
+
+#control-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#slide-right {
+    order: 1;
+}
+
+.container-md {
+    width: 500px;
+    margin-left: 50em;
+    margin-bottom: 100px;
 }
