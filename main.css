@@ -44,7 +44,6 @@ body {
     background: #BC493B;
 }
 
-
 .nav--bar {
     background: #B5A0B0;
 }
@@ -71,6 +70,15 @@ body {
 
 .search--header {
     margin: auto;
+}
+
+.containerWishlistPage {
+    width: 1000px;
+    color: #312C3C;
+}
+
+.containerCartWishlistPage {
+    color: #312C3C;
 }
 
 .footer--container {
